@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@nova/shared-types": ["../../packages/shared-types/src"],
+      "@nova/shared-utils": ["../../packages/shared-utils/src"]
+    }
+  }
+}

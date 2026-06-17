@@ -1,0 +1,11 @@
+node_modules/
+.next/
+dist/
+build/
+.env
+.env.*
+!.env.example
+apps/web/.next/
+apps/web/out/
+apps/api/nova-api
+*.log

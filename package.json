@@ -1,0 +1,17 @@
+{
+  "name": "nova",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "packages/shared-types",
+    "packages/shared-utils"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @nova/web run dev",
+    "build:web": "npm --workspace @nova/web run build",
+    "lint:web": "npm --workspace @nova/web run lint",
+    "dev:api": "cd apps/api && go run main.go",
+    "test:api": "cd apps/api && go test ./..."
+  }
+}
