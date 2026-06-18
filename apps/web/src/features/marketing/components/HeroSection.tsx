@@ -7,21 +7,20 @@ import { HeroConstants } from '../constants/constants'
 
 function HeroSection() {
     return (
-        <div className="relative w-full overflow-visible items-center justify-center py-10 md:py-20 2xl:px-26 2xl:py-26">
+        <div className="relative w-full overflow-hidden px-4 pt-28 pb-16 sm:px-6 md:pt-32 md:pb-24 lg:px-8 2xl:py-32">
             <div className="absolute inset-0 opacity-40 z-0 overflow-hidden">
                 <ColorBends
                     className="pointer-events-auto"
-                    colors={["#8A2CFF", "#7F00FF", "#3A86FF", "#C87BFF"]}
-                    bendAmount={0.5}
-                    rotation={0}
+                    colors={["#ff5c7a", "#8a5cff", "#00ffd1"]}
+                    rotation={90}
                     speed={0.2}
-                    scale={1.1}
+                    scale={1}
                     frequency={1}
                     warpStrength={1}
                     mouseInfluence={1}
                     parallax={0.5}
-                    noise={0}
-                    transparent={false}
+                    noise={0.15}
+                    transparent
                     style={{
                         WebkitMaskImage: "linear-gradient(to bottom, white 30%, transparent 100%)",
                         maskImage: "linear-gradient(to bottom, white 30%, transparent 100%)"
@@ -29,12 +28,14 @@ function HeroSection() {
                 />
             </div>
 
-            <div className="relative z-10 mt-20 mb-25 2xl:mt-40 2xl:mb-25 flex flex-col items-center justify-center space-y-3">
-                <div className="flex items-center justify-center space-x-5 ">
-                    <h1 className="tracking-tighter text-xs sm:text-sm md:text-6xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-bold"> {HeroConstants.mainTitle} </h1>
+            <div className="relative z-10 mx-auto flex min-h-[calc(100svh-10rem)] max-w-6xl flex-col items-center justify-center gap-6 text-center md:min-h-[620px] lg:min-h-[700px]">
+                <div className="flex max-w-full flex-col items-center justify-center gap-3 lg:flex-row lg:flex-wrap lg:gap-x-5">
+                    <h1 className="max-w-full text-center text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl 2xl:text-7xl">
+                        {HeroConstants.mainTitle}
+                    </h1>
                     <RotatingText
                         texts={['Build', 'Test', 'Deploy']}
-                        mainClassName="flex item-center justify-center leading-none px-2 sm:px-3 md:px-4 border-b border-white/30 backdrop-blur-xl text-white text-xs sm:text-sm md:text-6xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-bold overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-3xl shadow-xl"
+                        mainClassName="flex min-h-[1.15em] min-w-[5.75ch] items-center justify-center overflow-hidden rounded-2xl bg-white/5 px-3 py-1.5 text-4xl font-bold leading-none tracking-tight text-white shadow-xl backdrop-blur-xl sm:px-4 sm:py-2 sm:text-5xl md:text-6xl 2xl:text-7xl"
                         staggerFrom={"first"}
                         initial={{ y: "100%", opacity: 100 }}
                         animate={{ y: 0 }}
@@ -50,11 +51,18 @@ function HeroSection() {
                         rotationInterval={2000}
                     />
                 </div>
-                <h1 className="tracking-tighter text-xs sm:text-sm md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold"> {HeroConstants.subTitle} </h1>
-                <p className="tracking-tight text-xs sm:text-sm md:text-base lg:text-base xl:text-base 2xl:text-xl text-zinc-400 mt-20"> {HeroConstants.description} </p>
-                <button className="mt-6 px-6 py-4 text-white tracking-tight text-xs sm:text-sm md:text-base lg:text-base xl:text-base 2xl:text-xl font-medium cursor-pointer rounded-2xl border border-white/30 backdrop-blur-xl hover:bg-gray-500/15 transition-all duration-300 shadow-xl">
+                <h1 className="max-w-5xl text-center text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl 2xl:text-6xl">
+                    {HeroConstants.subTitle}
+                </h1>
+                <p className="mt-6 max-w-4xl px-2 text-center text-sm tracking-tight text-zinc-400 sm:text-base 2xl:text-xl">
+                    {HeroConstants.description}
+                </p>
+                <a
+                    href="/new"
+                    className="mt-2 cursor-pointer rounded-2xl bg-white/10 px-5 py-3.5 text-sm font-medium tracking-tight text-white shadow-xl backdrop-blur-xl transition-all duration-300 hover:bg-white/15 sm:px-6 sm:py-4 sm:text-base 2xl:text-xl"
+                >
                     {HeroConstants.buttonTextNewProject}
-                </button>
+                </a>
             </div>
         </div>
     )

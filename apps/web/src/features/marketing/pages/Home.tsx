@@ -27,10 +27,13 @@ function Home() {
         <div>
             <Navbar onLoginClick={() => setShowLogin(true)} />
 
-            <HeroSection />
+            <section id="home" className="scroll-mt-28">
+                <HeroSection />
+            </section>
             <div className="relative flex flex-col items-center container mx-auto md:px-24">
                 <div
-                    className="relative w-full backdrop-blur-lg mb-15 md:px-2"
+                    id="technologies"
+                    className="relative w-full scroll-mt-32 backdrop-blur-lg mb-15 md:px-2"
                     style={{
                         WebkitMaskImage: `
                             linear-gradient(to bottom, transparent 0%, black 0%, black 85%, transparent 100%),
@@ -47,7 +50,9 @@ function Home() {
                     <LogoLoopSection />
                 </div>
                 <LazyMount className="w-full" rootMargin="500px" minHeight="420px">
-                    <CardSection />
+                    <div id="features" className="scroll-mt-32">
+                        <CardSection />
+                    </div>
                 </LazyMount>
                 <div
                     className="relative w-full backdrop-blur-lg mt-20 mb-15"
@@ -71,8 +76,8 @@ function Home() {
 
             {showLogin && (
                 <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-                    <div className="bg-black rounded-xl relative">
-                        <button className="absolute top-8 right-12 text-gray-500" onClick={() => setShowLogin(false)}>
+                    <div className="relative rounded-2xl bg-black">
+                        <button className="absolute top-8 right-12 cursor-pointer text-gray-500" onClick={() => setShowLogin(false)}>
                             ✕
                         </button>
                         <Login />

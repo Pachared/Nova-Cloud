@@ -9,7 +9,7 @@ function Login() {
     const githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
 
     return (
-        <div className="flex flex-col items-center bg-black px-25 py-20 rounded-xl">
+        <div className="flex flex-col items-center rounded-2xl bg-black px-25 py-20">
             <img
                 src="/Nova.svg"
                 alt="Nova"
@@ -21,7 +21,7 @@ function Login() {
             <h2 className="text-md font-medium mb-10">
                 {LoginText.instructionMessage}
             </h2>
-            <a href={githubUrl} className="w-full text-center bg-gray-500 text-white p-2 rounded hover:bg-gray-800 transition">
+            <a href={githubUrl} className="w-full cursor-pointer rounded-2xl bg-gray-500 p-2 text-center text-white transition hover:bg-gray-800">
                 {LoginText.githubButtonText}
             </a>
         </div>
