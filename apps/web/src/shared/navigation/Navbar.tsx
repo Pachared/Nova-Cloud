@@ -8,8 +8,9 @@ type NavbarProps = {
 
 const navLinks = [
   { href: "#home", label: "หน้าแรก" },
-  { href: "#technologies", label: "เทคโนโลยี" },
+  { href: "#workflow", label: "Workflow" },
   { href: "#features", label: "ฟีเจอร์" },
+  { href: "#templates", label: "Templates" },
 ];
 
 function Navbar({ onLoginClick }: NavbarProps) {
