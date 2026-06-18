@@ -1,6 +1,22 @@
 import "../index.css";
+import { Noto_Sans_Thai, Roboto } from "next/font/google";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-roboto",
+});
+
+const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-noto-sans-thai",
+});
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -45,7 +61,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="th">
+    <html lang="th" className={`${roboto.variable} ${notoSansThai.variable}`}>
       <body>{children}</body>
     </html>
   );
