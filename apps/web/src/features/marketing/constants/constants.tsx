@@ -27,16 +27,16 @@ export const CurvedLoopSectionConstants = {
 
 export const techLogosConstants = [
   { node: <SiReact />, title: "React", href: "https://react.dev" },
-  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiNextdotjs />, title: "Next", href: "https://nextjs.org" },
   {
     node: <SiTailwindcss />,
     title: "Tailwind CSS",
     href: "https://tailwindcss.com",
   },
   { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
-  { node: <IoLogoVue />, title: "Vue.js", href: "https://vuejs.org" },
+  { node: <IoLogoVue />, title: "Vue", href: "https://vuejs.org" },
   { node: <SiSvelte />, title: "Svelte", href: "https://svelte.dev" },
-  { node: <SiNuxt />, title: "Nuxt.js", href: "https://nuxt.com" },
+  { node: <SiNuxt />, title: "Nuxt", href: "https://nuxt.com" },
   {
     node: <SiBootstrap />,
     title: "Bootstrap",

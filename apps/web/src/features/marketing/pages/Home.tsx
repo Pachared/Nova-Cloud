@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-import Navbar from "@/shared/navigation/Navbar.jsx";
-import HeroSection from "../components/HeroSection.jsx";
-import CurvedLoopSection from "../components/CurvedLoopSection.jsx";
-import CardSection from "../components/CardSection.jsx";
-import ScrollVelocitySection from "../components/ScrollVelocitySection.jsx";
-import LogoLoopSection from "../components/LogoLoopSection.jsx";
-import Login from "@/features/auth/components/Login.jsx";
+import Navbar from "@/shared/navigation/Navbar";
+import HeroSection from "../components/HeroSection";
+import CurvedLoopSection from "../components/CurvedLoopSection";
+import CardSection from "../components/CardSection";
+import ScrollVelocitySection from "../components/ScrollVelocitySection";
+import LogoLoopSection from "../components/LogoLoopSection";
+import Login from "@/features/auth/components/Login";
 
 function Home() {
     const [showLogin, setShowLogin] = useState(false);

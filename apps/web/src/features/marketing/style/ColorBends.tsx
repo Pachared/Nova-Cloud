@@ -108,7 +108,8 @@ export default function ColorBends({
     warpStrength = 1,
     mouseInfluence = 1,
     parallax = 0.5,
-    noise = 0.1
+    noise = 0.1,
+    bendAmount: _bendAmount = 0
 }) {
     const containerRef = useRef(null);
     const rendererRef = useRef(null);
@@ -181,8 +182,8 @@ export default function ColorBends({
 
         handleResize();
 
-        if ('ResizeObserver' in window) {
-            const ro = new ResizeObserver(handleResize);
+        if (window.ResizeObserver) {
+            const ro = new window.ResizeObserver(handleResize);
             ro.observe(container);
             resizeObserverRef.current = ro;
         } else {

@@ -1,13 +1,50 @@
 'use client';
 
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
+import type { ComponentProps } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-function cn(...classes) {
+type StaggerFrom = 'first' | 'last' | 'center' | 'random' | number;
+
+type RotatingTextHandle = {
+    next: () => void;
+    previous: () => void;
+    jumpTo: (index: number) => void;
+    reset: () => void;
+};
+
+type MotionSpanProps = ComponentProps<typeof motion.span>;
+
+type RotatingTextProps = Omit<
+    MotionSpanProps,
+    'children' | 'transition' | 'initial' | 'animate' | 'exit'
+> & {
+    texts: string[];
+    transition?: MotionSpanProps['transition'];
+    initial?: MotionSpanProps['initial'];
+    animate?: MotionSpanProps['animate'];
+    exit?: MotionSpanProps['exit'];
+    animatePresenceMode?: 'sync' | 'popLayout' | 'wait';
+    animatePresenceInitial?: boolean;
+    rotationInterval?: number;
+    staggerDuration?: number;
+    staggerFrom?: StaggerFrom;
+    loop?: boolean;
+    auto?: boolean;
+    splitBy?: 'characters' | 'words' | 'lines' | string;
+    onNext?: (index: number) => void;
+    mainClassName?: string;
+    splitLevelClassName?: string;
+    elementLevelClassName?: string;
+    delay?: number;
+    duration?: number;
+};
+
+function cn(...classes: Array<string | undefined | false>) {
     return classes.filter(Boolean).join(' ');
 }
 
-const RotatingText = forwardRef((props, ref) => {
+const RotatingText = forwardRef<RotatingTextHandle, RotatingTextProps>((props, ref) => {
     const {
         texts,
         transition = { type: 'spring', damping: 25, stiffness: 300 },
@@ -31,7 +68,7 @@ const RotatingText = forwardRef((props, ref) => {
 
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
-    const splitIntoCharacters = text => {
+    const splitIntoCharacters = (text: string) => {
         if (typeof Intl !== 'undefined' && Intl.Segmenter) {
             const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
             return Array.from(segmenter.segment(text), segment => segment.segment);
@@ -68,7 +105,7 @@ const RotatingText = forwardRef((props, ref) => {
     }, [texts, currentTextIndex, splitBy]);
 
     const getStaggerDelay = useCallback(
-        (index, totalChars) => {
+        (index: number, totalChars: number) => {
             const total = totalChars;
             if (staggerFrom === 'first') return index * staggerDuration;
             if (staggerFrom === 'last') return (total - 1 - index) * staggerDuration;
@@ -86,7 +123,7 @@ const RotatingText = forwardRef((props, ref) => {
     );
 
     const handleIndexChange = useCallback(
-        newIndex => {
+        (newIndex: number) => {
             setCurrentTextIndex(newIndex);
             if (onNext) onNext(newIndex);
         },
@@ -108,7 +145,7 @@ const RotatingText = forwardRef((props, ref) => {
     }, [currentTextIndex, texts.length, loop, handleIndexChange]);
 
     const jumpTo = useCallback(
-        index => {
+        (index: number) => {
             const validIndex = Math.max(0, Math.min(index, texts.length - 1));
             if (validIndex !== currentTextIndex) {
                 handleIndexChange(validIndex);

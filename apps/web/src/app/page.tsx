@@ -1,4 +1,4 @@
-import Home from "@/features/marketing/pages/Home.jsx";
+import Home from "@/features/marketing/pages/Home";
 
 const productJsonLd = {
   "@context": "https://schema.org",

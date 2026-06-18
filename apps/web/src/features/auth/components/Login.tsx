@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { LoginText } from '@/features/marketing/constants/constants.jsx';
+import { LoginText } from '@/features/marketing/constants/constants';
 
 function Login() {
 

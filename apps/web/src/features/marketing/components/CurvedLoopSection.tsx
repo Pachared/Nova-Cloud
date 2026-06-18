@@ -2,7 +2,7 @@ import React from 'react'
 
 import CurvedLoop from '../style/CurvedLoop'
 
-import { CurvedLoopSectionConstants } from '../constants/constants.jsx'
+import { CurvedLoopSectionConstants } from '../constants/constants'
 
 function CurvedLoopSection() {
     return (
