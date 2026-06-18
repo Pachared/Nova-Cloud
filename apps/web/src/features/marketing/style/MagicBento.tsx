@@ -43,8 +43,13 @@ const cardData = [
     description:
       "ส่งมอบแอปขึ้นสู่เซิร์ฟเวอร์หรือคลาวด์ พร้อมควบคุมการปล่อยเวอร์ชันอย่างราบรื่น",
     label: "Deploy",
-    gif: "CICD Pipeline.gif",
+    gif: "CICD.jpg",
+    gifWidth: 800,
+    gifHeight: 534,
+    merginLeft: 0,
     merginRight: 0,
+    merginBottom: 0,
+    merginTop: 0,
   },
 ];
 

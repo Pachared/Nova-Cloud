@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from "react";
+import { useEffect, useRef, useLayoutEffect, useState } from "react";
 import type { CSSProperties, ReactNode, RefObject } from "react";
 import {
   motion,
@@ -80,6 +80,8 @@ export const ScrollVelocity = ({
     parallaxStyle,
     scrollerStyle,
   }: VelocityTextProps) {
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+    const [isInView, setIsInView] = useState(true);
     const baseX = useMotionValue(0);
     const scrollOptions = scrollContainerRef
       ? { container: scrollContainerRef }
@@ -112,7 +114,20 @@ export const ScrollVelocity = ({
     });
 
     const directionFactor = useRef(1);
+    useEffect(() => {
+      const element = parallaxRef.current;
+      if (!element || !window.IntersectionObserver) return;
+
+      const observer = new window.IntersectionObserver(
+        ([entry]) => setIsInView(entry.isIntersecting),
+        { rootMargin: "120px" }
+      );
+      observer.observe(element);
+      return () => observer.disconnect();
+    }, []);
+
     useAnimationFrame((t, delta) => {
+      if (!isInView) return;
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
       if (velocityFactor.get() < 0) {
@@ -140,6 +155,7 @@ export const ScrollVelocity = ({
 
     return (
       <div
+        ref={parallaxRef}
         className={`${parallaxClassName} relative overflow-hidden`}
         style={parallaxStyle}
       >

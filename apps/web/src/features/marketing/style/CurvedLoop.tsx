@@ -14,11 +14,13 @@ const CurvedLoop = ({
     }, [marqueeText]);
 
     const measureRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
     const textPathRef = useRef(null);
     const pathRef = useRef(null);
     const [spacing, setSpacing] = useState(0);
     const [offset, setOffset] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
+    const [isInView, setIsInView] = useState(true);
     const uid = useId();
     const pathId = `curve-${uid}`;
     const pathD = `M-100,40 Q500,${40 + curveAmount} 1540,40`;
@@ -50,7 +52,19 @@ const CurvedLoop = ({
     }, [spacing]);
 
     useEffect(() => {
-        if (!spacing || !ready) return;
+        const container = containerRef.current;
+        if (!container || !window.IntersectionObserver) return;
+
+        const observer = new window.IntersectionObserver(
+            ([entry]) => setIsInView(entry.isIntersecting),
+            { rootMargin: '120px' }
+        );
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!spacing || !ready || !isInView) return;
         let frame = 0;
         const step = () => {
             if (!dragRef.current && textPathRef.current) {
@@ -67,7 +81,7 @@ const CurvedLoop = ({
         };
         frame = requestAnimationFrame(step);
         return () => cancelAnimationFrame(frame);
-    }, [spacing, speed, ready]);
+    }, [spacing, speed, ready, isInView]);
 
     const onPointerDown = e => {
         if (!interactive) return;
@@ -103,6 +117,7 @@ const CurvedLoop = ({
 
     return (
         <div
+            ref={containerRef}
             className="flex items-center justify-center w-full"
             style={{ visibility: ready ? 'visible' : 'hidden', cursor: cursorStyle }}
             onPointerDown={onPointerDown}

@@ -1,14 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 
 import Navbar from "@/shared/navigation/Navbar";
 import HeroSection from "../components/HeroSection";
-import CurvedLoopSection from "../components/CurvedLoopSection";
-import CardSection from "../components/CardSection";
-import ScrollVelocitySection from "../components/ScrollVelocitySection";
 import LogoLoopSection from "../components/LogoLoopSection";
+import LazyMount from "../components/LazyMount";
 import Login from "@/features/auth/components/Login";
+
+const CardSection = dynamic(() => import("../components/CardSection"), {
+    ssr: false,
+});
+const ScrollVelocitySection = dynamic(
+    () => import("../components/ScrollVelocitySection"),
+    { ssr: false }
+);
+const CurvedLoopSection = dynamic(() => import("../components/CurvedLoopSection"), {
+    ssr: false,
+});
 
 function Home() {
     const [showLogin, setShowLogin] = useState(false);
@@ -36,7 +46,9 @@ function Home() {
                 >
                     <LogoLoopSection />
                 </div>
-                <CardSection />
+                <LazyMount className="w-full" rootMargin="500px" minHeight="420px">
+                    <CardSection />
+                </LazyMount>
                 <div
                     className="relative w-full backdrop-blur-lg mt-20 mb-15"
                     style={{
@@ -50,8 +62,10 @@ function Home() {
                         maskComposite: "intersect",
                     }}
                 >
-                    <ScrollVelocitySection />
-                    <CurvedLoopSection />
+                    <LazyMount rootMargin="400px" minHeight="180px">
+                        <ScrollVelocitySection />
+                        <CurvedLoopSection />
+                    </LazyMount>
                 </div>
             </div>
 
