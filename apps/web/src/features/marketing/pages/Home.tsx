@@ -22,24 +22,7 @@ function Home() {
                 <HeroSection />
             </section>
             <div className="relative flex flex-col items-center">
-                <div
-                    id="technologies"
-                    className="relative w-full scroll-mt-32 backdrop-blur-lg"
-                    style={{
-                        WebkitMaskImage: `
-                            linear-gradient(to bottom, transparent 0%, black 0%, black 85%, transparent 100%),
-                            linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)
-                            `,
-                                        maskImage: `
-                            linear-gradient(to bottom, transparent 0%, black 0%, black 85%, transparent 100%),
-                            linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)
-                            `,
-                        WebkitMaskComposite: "intersect",
-                        maskComposite: "intersect",
-                    }}
-                >
-                    <LogoLoopSection />
-                </div>
+                <LogoLoopSection />
                 <WorkflowSection />
                 <CapabilitiesSection />
                 <NewProjectPreviewSection />
