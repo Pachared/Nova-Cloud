@@ -10,7 +10,7 @@ const createOptions = [
 function NewProjectPreviewSection() {
   return (
     <section id="templates" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             เริ่มโปรเจกต์ใหม่แบบเดียวกับเครื่องมือ production

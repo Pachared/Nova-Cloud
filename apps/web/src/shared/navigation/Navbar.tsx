@@ -8,9 +8,10 @@ type NavbarProps = {
 
 const navLinks = [
   { href: "#home", label: "หน้าแรก" },
+  { href: "#templates", label: "Templates" },
   { href: "#workflow", label: "Workflow" },
   { href: "#features", label: "ฟีเจอร์" },
-  { href: "#templates", label: "Templates" },
+  { href: "#technologies", label: "Technologies" },
 ];
 
 function Navbar({ onLoginClick }: NavbarProps) {
@@ -19,7 +20,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
       className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-6 lg:px-8"
       aria-label="Primary navigation"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 rounded-2xl bg-black/25 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:px-4 md:flex-nowrap lg:px-5">
+      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 rounded-2xl bg-black/25 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:px-4 md:flex-nowrap lg:px-5">
         <button
           type="button"
           onClick={() => window.location.assign("/")}

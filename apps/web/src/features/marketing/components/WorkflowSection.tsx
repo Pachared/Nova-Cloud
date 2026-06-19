@@ -26,7 +26,7 @@ const workflowSteps = [
 function WorkflowSection() {
   return (
     <section id="workflow" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             จาก repository ไป production ใน workflow เดียว

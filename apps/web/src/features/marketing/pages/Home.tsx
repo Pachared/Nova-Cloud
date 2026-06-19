@@ -22,10 +22,10 @@ function Home() {
                 <HeroSection />
             </section>
             <div className="relative flex flex-col items-center">
-                <LogoLoopSection />
+                <NewProjectPreviewSection />
                 <WorkflowSection />
                 <CapabilitiesSection />
-                <NewProjectPreviewSection />
+                <LogoLoopSection />
                 <FinalCtaSection />
             </div>
 
