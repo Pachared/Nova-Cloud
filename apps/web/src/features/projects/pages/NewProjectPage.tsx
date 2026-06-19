@@ -10,6 +10,7 @@ import {
   FiSearch,
   FiServer,
 } from "react-icons/fi";
+import GlassSurface from "@/shared/ui/GlassSurface";
 
 const projectActions = [
   {
@@ -64,18 +65,35 @@ function NewProjectPage() {
       <section className="grid min-h-[calc(100vh-4rem)] grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,1fr)_minmax(420px,560px)]">
         <div className="relative hidden overflow-hidden lg:block">
           <div className="absolute inset-8 rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(138,92,255,0.3),transparent_35%),linear-gradient(135deg,rgba(255,92,122,0.16),rgba(0,255,209,0.08),transparent_65%)]" />
-          <div className="absolute left-12 top-14 rounded-2xl bg-black/40 p-4 shadow-2xl backdrop-blur-xl">
+          <GlassSurface
+            width="auto"
+            height="auto"
+            borderRadius={16}
+            backgroundOpacity={0.08}
+            saturation={1.5}
+            contentClassName="block p-4"
+            className="absolute left-12 top-14 rounded-2xl"
+          >
             <p className="text-xs text-zinc-500">Workspace</p>
             <p className="mt-1 text-sm font-medium">Personal / Production</p>
-          </div>
+          </GlassSurface>
           <div className="absolute bottom-16 left-16 right-16 grid grid-cols-2 gap-4">
             {serviceOptions.map((option) => {
               const Icon = option.icon;
               return (
-                <div key={option.label} className="rounded-2xl bg-white/5 p-4 backdrop-blur-xl">
+                <GlassSurface
+                  key={option.label}
+                  width="100%"
+                  height="auto"
+                  borderRadius={16}
+                  backgroundOpacity={0.04}
+                  saturation={1.45}
+                  contentClassName="block p-4"
+                  className="rounded-2xl"
+                >
                   <Icon className="mb-8 text-zinc-400" aria-hidden="true" />
                   <p className="text-sm font-medium">{option.label}</p>
-                </div>
+                </GlassSurface>
               );
             })}
           </div>

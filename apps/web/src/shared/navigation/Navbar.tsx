@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import GlassSurface from "@/shared/ui/GlassSurface";
 
 type NavbarProps = {
   onLoginClick: () => void;
@@ -19,7 +20,15 @@ function Navbar({ onLoginClick }: NavbarProps) {
       className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-6 lg:px-8"
       aria-label="Primary navigation"
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 rounded-2xl bg-black/25 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:px-4 md:flex-nowrap lg:px-5">
+      <GlassSurface
+        width="100%"
+        height="auto"
+        borderRadius={16}
+        backgroundOpacity={0.05}
+        saturation={1.6}
+        contentClassName="flex w-full flex-wrap items-center justify-between gap-3 px-3 py-2.5 sm:px-4 md:flex-nowrap lg:px-5"
+        className="mx-auto w-full max-w-7xl rounded-2xl"
+      >
         <button
           type="button"
           onClick={() => window.location.assign("/")}
@@ -53,7 +62,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
         >
           เข้าสู่ระบบ
         </button>
-      </div>
+      </GlassSurface>
     </nav>
   );
 }

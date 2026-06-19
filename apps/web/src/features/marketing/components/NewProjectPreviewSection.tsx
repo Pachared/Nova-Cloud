@@ -1,4 +1,5 @@
 import { FiBox, FiDatabase, FiGithub, FiPlus, FiSearch, FiServer } from "react-icons/fi";
+import GlassSurface from "@/shared/ui/GlassSurface";
 
 const createOptions = [
   ["Deploy from GitHub", "Import repository แล้ว deploy อัตโนมัติ", FiGithub],
@@ -21,7 +22,15 @@ function NewProjectPreviewSection() {
           </p>
         </div>
 
-        <div className="rounded-2xl bg-[#111018] p-4 shadow-2xl shadow-black/40">
+        <GlassSurface
+          width="100%"
+          height="auto"
+          borderRadius={16}
+          backgroundOpacity={0.08}
+          saturation={1.5}
+          contentClassName="block p-4"
+          className="rounded-2xl"
+        >
           <div className="flex items-center justify-between rounded-2xl bg-black/40 px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-white">New project</p>
@@ -47,7 +56,7 @@ function NewProjectPreviewSection() {
               </button>
             ))}
           </div>
-        </div>
+        </GlassSurface>
       </div>
     </section>
   );

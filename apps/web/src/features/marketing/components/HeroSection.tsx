@@ -7,6 +7,7 @@ import ColorBends from '../style/ColorBends'
 import { FiCheckCircle, FiGitBranch, FiTerminal } from 'react-icons/fi'
 
 import { HeroConstants } from '../constants/constants'
+import GlassSurface from '@/shared/ui/GlassSurface'
 
 function HeroSection() {
     const [activeStep, setActiveStep] = useState(0);
@@ -60,24 +61,34 @@ function HeroSection() {
                         <h1 className="shrink-0 whitespace-nowrap text-2xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
                             {HeroConstants.mainTitle}
                         </h1>
-                        <RotatingText
-                            texts={rotatingWords}
-                            mainClassName="inline-flex min-h-[1.15em] min-w-[5.75ch] shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white/5 px-2.5 py-1.5 text-2xl font-bold leading-none tracking-tight text-white shadow-xl backdrop-blur-xl sm:px-3 sm:text-4xl md:text-5xl xl:px-4 xl:py-2 xl:text-6xl"
-                            staggerFrom={"first"}
-                            initial={{ y: "100%", opacity: 100 }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "-120%", opacity: 0 }}
-                            animatePresenceMode={"wait"}
-                            animatePresenceInitial={false}
-                            loop={true}
-                            delay={2}
-                            duration={0.5}
-                            staggerDuration={0.025}
-                            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                            transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                            rotationInterval={2000}
-                            onNext={setActiveStep}
-                        />
+                        <GlassSurface
+                            width="auto"
+                            height="auto"
+                            borderRadius={16}
+                            backgroundOpacity={0.04}
+                            saturation={1.5}
+                            contentClassName="p-0"
+                            className="shrink-0 rounded-2xl"
+                        >
+                            <RotatingText
+                                texts={rotatingWords}
+                                mainClassName="inline-flex min-h-[1.15em] min-w-[5.75ch] items-center justify-center overflow-hidden px-2.5 py-1.5 text-2xl font-bold leading-none tracking-tight text-white sm:px-3 sm:text-4xl md:text-5xl xl:px-4 xl:py-2 xl:text-6xl"
+                                staggerFrom={"first"}
+                                initial={{ y: "100%", opacity: 100 }}
+                                animate={{ y: 0 }}
+                                exit={{ y: "-120%", opacity: 0 }}
+                                animatePresenceMode={"wait"}
+                                animatePresenceInitial={false}
+                                loop={true}
+                                delay={2}
+                                duration={0.5}
+                                staggerDuration={0.025}
+                                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                                rotationInterval={2000}
+                                onNext={setActiveStep}
+                            />
+                        </GlassSurface>
                     </div>
                     <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
                         {HeroConstants.subTitle}
@@ -92,9 +103,15 @@ function HeroSection() {
                         {HeroConstants.buttonTextNewProject}
                     </a>
                 </div>
-                <div
+                <GlassSurface
+                    width="100%"
+                    height="auto"
+                    borderRadius={16}
+                    backgroundOpacity={0.08}
+                    saturation={1.5}
+                    contentClassName="p-4"
                     data-testid="hero-preview"
-                    className="w-full min-w-0 rounded-2xl bg-[#111018]/90 p-4 shadow-2xl shadow-black/40 backdrop-blur-xl"
+                    className="w-full min-w-0 rounded-2xl"
                 >
                     <div className="rounded-2xl bg-black/45 p-4">
                         <div className="flex items-center justify-between">
@@ -140,7 +157,7 @@ function HeroSection() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </GlassSurface>
             </div>
         </div>
     )
