@@ -1,5 +1,4 @@
 import { FiBox, FiDatabase, FiGithub, FiPlus, FiSearch, FiServer } from "react-icons/fi";
-import GlassSurface from "@/shared/ui/GlassSurface";
 
 const createOptions = [
   ["Deploy from GitHub", "Import repository แล้ว deploy อัตโนมัติ", FiGithub],
@@ -22,41 +21,43 @@ function NewProjectPreviewSection() {
           </p>
         </div>
 
-        <GlassSurface
-          width="100%"
-          height="auto"
-          borderRadius={16}
-          backgroundOpacity={0.08}
-          saturation={1.5}
-          contentClassName="block p-4"
-          className="rounded-2xl"
-        >
-          <div className="flex items-center justify-between rounded-2xl bg-black/40 px-4 py-3">
-            <div>
-              <p className="text-sm font-semibold text-white">New project</p>
-              <p className="text-xs text-zinc-500">Personal workspace</p>
+        <div className="relative overflow-hidden rounded-3xl bg-[#08080d]/90 p-4 shadow-2xl shadow-black/40 sm:p-5">
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/50 to-transparent" />
+          <div className="grid gap-3 lg:grid-cols-[190px_1fr]">
+            <div className="rounded-2xl bg-white/[0.055] p-4">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-white">New project</p>
+                  <p className="mt-1 text-xs text-zinc-500">Personal workspace</p>
+                </div>
+                <FiServer className="shrink-0 text-violet-300" aria-hidden="true" />
+              </div>
+              <div className="mt-5 h-1.5 overflow-hidden rounded-2xl bg-white/[0.06]">
+                <div className="h-full w-2/3 rounded-2xl bg-gradient-to-r from-indigo-400 via-violet-300 to-fuchsia-300" />
+              </div>
             </div>
-            <FiServer className="text-cyan-300" aria-hidden="true" />
+            <div className="flex min-w-0 items-center gap-3 rounded-2xl bg-white/[0.055] px-4 py-3 text-sm text-zinc-500">
+              <FiSearch className="shrink-0" aria-hidden="true" />
+              <span className="min-w-0 truncate">Search repositories, templates, or services</span>
+            </div>
           </div>
-          <div className="mt-4 flex items-center gap-3 rounded-2xl bg-black/35 px-4 py-3 text-sm text-zinc-500">
-            <FiSearch aria-hidden="true" />
-            <span>Search repositories, templates, or services</span>
-          </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {createOptions.map(([title, description, Icon]) => (
               <button
                 key={title}
-                className="cursor-pointer rounded-2xl bg-white/[0.06] p-4 text-left transition hover:bg-white/[0.1]"
+                className="group flex min-h-36 cursor-pointer flex-col justify-between rounded-2xl bg-white/[0.045] p-4 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300">
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-violet-300">
                   <Icon aria-hidden="true" />
                 </span>
-                <span className="mt-8 block text-sm font-medium text-white">{title}</span>
-                <span className="mt-2 block text-xs leading-5 text-zinc-500">{description}</span>
+                <span>
+                  <span className="block text-sm font-medium text-white">{title}</span>
+                  <span className="mt-2 block text-xs leading-5 text-zinc-500">{description}</span>
+                </span>
               </button>
             ))}
           </div>
-        </GlassSurface>
+        </div>
       </div>
     </section>
   );

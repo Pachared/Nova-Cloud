@@ -26,6 +26,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
         borderRadius={16}
         backgroundOpacity={0.05}
         saturation={1.6}
+        enableSvgFilter
         contentClassName="grid w-full grid-cols-[auto_auto] items-center gap-x-4 gap-y-3 px-3 py-2.5 sm:px-4 md:grid-cols-[minmax(150px,1fr)_auto_minmax(150px,1fr)] md:gap-x-8 lg:px-5"
         className="mx-auto w-full max-w-7xl rounded-2xl"
       >

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 import RotatingText from '../style/RotatingText'
 import ColorBends from '../style/ColorBends'
-import { FiCheckCircle, FiGitBranch, FiTerminal } from 'react-icons/fi'
+import { FiCheckCircle, FiGitBranch, FiGlobe, FiTerminal } from 'react-icons/fi'
 
 import { HeroConstants } from '../constants/constants'
 import GlassSurface from '@/shared/ui/GlassSurface'
@@ -32,26 +32,28 @@ function HeroSection() {
 
     return (
         <div className="relative w-full overflow-hidden px-4 pt-28 pb-16 sm:px-6 md:pt-32 md:pb-24 lg:px-8 2xl:py-32">
-            <div className="absolute inset-0 opacity-40 z-0 overflow-hidden">
+            <div className="pointer-events-none absolute inset-x-[-18vw] -top-28 -bottom-36 z-0 opacity-[0.58] sm:inset-x-[-14vw] md:-top-36 md:-bottom-44 xl:inset-x-[-10vw] xl:-top-44 xl:-bottom-52">
                 <ColorBends
-                    className="pointer-events-auto"
-                    colors={["#ff5c7a", "#8a5cff", "#00ffd1"]}
+                    className="pointer-events-none"
+                    colors={["#6366f1", "#7c3aed", "#a855f7", "#c084fc"]}
                     rotation={90}
+                    autoRotate={0}
                     speed={0.2}
-                    frameRate={30}
                     scale={1}
                     frequency={1}
                     warpStrength={1}
-                    mouseInfluence={0.35}
-                    parallax={0.25}
-                    noise={0.08}
+                    mouseInfluence={1}
+                    parallax={0.5}
+                    noise={0.15}
+                    iterations={1}
+                    intensity={1.5}
+                    bandWidth={6}
                     transparent
-                    style={{
-                        WebkitMaskImage: "linear-gradient(to bottom, white 30%, transparent 100%)",
-                        maskImage: "linear-gradient(to bottom, white 30%, transparent 100%)"
-                    }}
+                    style={{}}
                 />
             </div>
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-black via-black/55 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-64 bg-gradient-to-b from-transparent via-black/50 to-black md:h-80" />
 
             <div className="relative z-10 mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-10 md:min-h-[700px] xl:grid-cols-[minmax(690px,1fr)_minmax(360px,480px)]">
                 <div
@@ -104,27 +106,25 @@ function HeroSection() {
                         {HeroConstants.buttonTextNewProject}
                     </a>
                 </div>
-                <GlassSurface
-                    width="100%"
-                    height="auto"
-                    borderRadius={16}
-                    backgroundOpacity={0.08}
-                    saturation={1.5}
-                    contentClassName="p-4"
+                <div
                     data-testid="hero-preview"
-                    className="w-full min-w-0 rounded-2xl"
+                    className="w-full min-w-0"
                 >
-                    <div className="rounded-2xl bg-black/45 p-4">
-                        <div className="flex items-center justify-between">
+                    <div className="relative overflow-hidden rounded-3xl bg-[#08080d]/90 p-5 shadow-2xl shadow-black/40 sm:p-6">
+                        <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/50 to-transparent" />
+                        <div className="flex items-start justify-between gap-4">
                             <div>
-                                <p className="text-sm font-semibold">nova-cloud/web</p>
-                                <p className="text-xs text-zinc-500">main · production</p>
+                                <p className="text-sm font-semibold leading-none text-white">nova-cloud/web</p>
+                                <p className="mt-1.5 text-xs text-zinc-500">main · production</p>
                             </div>
-                            <FiCheckCircle className="text-emerald-300" aria-hidden="true" />
+                            <div className="flex items-center gap-2 rounded-2xl bg-violet-300/10 px-3 py-2 text-xs font-medium text-violet-100">
+                                <FiCheckCircle className="text-base" aria-hidden="true" />
+                                Ready
+                            </div>
                         </div>
-                        <div className="mt-5 h-1.5 overflow-hidden rounded-2xl bg-white/10">
+                        <div className="mt-5 h-2 overflow-hidden rounded-2xl bg-white/[0.06]">
                             <div
-                                className="h-full rounded-2xl bg-cyan-300 transition-all duration-700 ease-out"
+                                className="h-full rounded-2xl bg-gradient-to-r from-indigo-400 via-violet-300 to-fuchsia-300 transition-all duration-700 ease-out"
                                 style={{ width: `${((activeStep + 1) / previewSteps.length) * 100}%` }}
                             />
                         </div>
@@ -132,33 +132,44 @@ function HeroSection() {
                             {previewSteps.map((step, index) => (
                                 <div
                                     key={step.label}
-                                    className={`rounded-2xl p-3 text-xs transition-all duration-500 ${
+                                    className={`rounded-2xl px-3 py-3 text-xs font-medium transition-all duration-500 ${
                                         activeStep === index
-                                            ? 'bg-cyan-300 text-black shadow-lg shadow-cyan-300/20'
-                                            : 'bg-white/[0.06] text-zinc-300'
+                                            ? 'bg-violet-300 text-black shadow-xl shadow-violet-300/20'
+                                            : 'bg-white/[0.045] text-zinc-400'
                                     }`}
                                 >
                                     {step.label}
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-6 space-y-3 text-sm">
-                            <div className="flex items-center gap-3 rounded-2xl bg-white/[0.06] p-3">
-                                <FiGitBranch className="text-cyan-300" aria-hidden="true" />
+                        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-[1fr_auto]">
+                            <div className="flex items-center gap-3 rounded-2xl bg-white/[0.055] p-3">
+                                <FiGitBranch className="text-violet-300" aria-hidden="true" />
                                 <span className="text-zinc-300">GitHub connected</span>
                             </div>
-                            <div className="rounded-2xl bg-[#07070b] p-4 font-mono text-xs leading-6 text-zinc-400">
+                            <div className="flex items-center gap-2 rounded-2xl bg-white/[0.045] px-3 py-3 text-xs text-zinc-400">
+                                <FiGlobe className="text-fuchsia-300" aria-hidden="true" />
+                                us-east
+                            </div>
+                        </div>
+                        <div className="mt-3 overflow-hidden rounded-2xl bg-[#030308] shadow-inner shadow-black/70">
+                            <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+                                <span className="h-2 w-2 rounded-full bg-red-400/80" />
+                                <span className="h-2 w-2 rounded-full bg-yellow-300/80" />
+                                <span className="h-2 w-2 rounded-full bg-violet-300/80" />
+                            </div>
+                            <div className="p-4 font-mono text-xs leading-6 text-zinc-400">
                                 <FiTerminal className="mb-3 text-violet-300" aria-hidden="true" />
                                 <p className="transition-colors duration-500">
                                     {previewSteps[activeStep].command}
                                 </p>
-                                <p className="text-emerald-300 transition-colors duration-500">
+                                <p className="text-violet-300 transition-colors duration-500">
                                     {previewSteps[activeStep].output}
                                 </p>
                             </div>
                         </div>
                     </div>
-                </GlassSurface>
+                </div>
             </div>
         </div>
     )

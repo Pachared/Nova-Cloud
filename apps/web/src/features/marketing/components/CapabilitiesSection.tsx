@@ -28,7 +28,7 @@ function CapabilitiesSection() {
             <p>deployments: healthy</p>
             <p>services: web, api, worker</p>
             <p>environments: preview, production</p>
-            <p className="text-cyan-300">observability: logs + health checks active</p>
+            <p className="text-fuchsia-300">observability: logs + health checks active</p>
           </div>
         </div>
 
