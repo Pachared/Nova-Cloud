@@ -1,16 +1,17 @@
 import { FiBox, FiDatabase, FiGithub, FiPlus, FiSearch, FiServer } from "react-icons/fi";
 
 const createOptions = [
-  ["Deploy from GitHub", "Import repository แล้ว deploy อัตโนมัติ", FiGithub],
-  ["Start from template", "เลือก starter สำหรับ frontend, API หรือ full-stack", FiBox],
-  ["Add database", "เพิ่ม PostgreSQL หรือ Redis พร้อม env binding", FiDatabase],
-  ["Empty project", "เริ่ม workspace เปล่าแล้วค่อยเพิ่ม service", FiPlus],
+  ["deploy-github", "Deploy from GitHub", "Import repository แล้ว deploy อัตโนมัติ", FiGithub],
+  ["start-template", "Start from template", "เลือก starter สำหรับ frontend, API หรือ full-stack", FiBox],
+  ["add-database", "Add database", "เพิ่ม PostgreSQL หรือ Redis พร้อม env binding", FiDatabase],
+  ["empty-project", "Empty project", "เริ่ม workspace เปล่าแล้วค่อยเพิ่ม service", FiPlus],
 ] as const;
 
 function NewProjectPreviewSection() {
   return (
-    <section id="templates" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+    <section id="templates" className="scroll-mt-32 px-4 pb-0 pt-20 sm:px-6 lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl gap-10 pb-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/70 to-transparent" />
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             เริ่มโปรเจกต์ใหม่แบบเดียวกับเครื่องมือ production
@@ -22,7 +23,6 @@ function NewProjectPreviewSection() {
         </div>
 
         <div className="relative overflow-hidden rounded-3xl bg-[#08080d]/90 p-4 shadow-2xl shadow-black/40 sm:p-5">
-          <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent" />
           <div className="grid gap-3 lg:grid-cols-[190px_1fr]">
             <div className="rounded-2xl bg-white/[0.055] p-4">
               <div className="flex items-center justify-between gap-4">
@@ -42,9 +42,10 @@ function NewProjectPreviewSection() {
             </div>
           </div>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
-            {createOptions.map(([title, description, Icon]) => (
+            {createOptions.map(([id, title, description, Icon]) => (
               <button
                 key={title}
+                data-project-option={id}
                 className="group flex min-h-36 cursor-pointer flex-col justify-between rounded-2xl bg-white/[0.045] p-4 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-[#c084fc]">
