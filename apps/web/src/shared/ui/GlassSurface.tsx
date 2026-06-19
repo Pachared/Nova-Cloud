@@ -3,7 +3,12 @@
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import GlassSurfaceFilter from "./GlassSurfaceFilter";
-import { createDisplacementMap, type GlassSurfaceProps, useDarkMode } from "./glassSurfaceUtils";
+import {
+  createDisplacementMap,
+  createLiteGlassStyles,
+  type GlassSurfaceProps,
+  useDarkMode,
+} from "./glassSurfaceUtils";
 
 function GlassSurface({
   children,
@@ -26,6 +31,7 @@ function GlassSurface({
   mixBlendMode = "difference",
   className = "",
   contentClassName = "p-2",
+  enableSvgFilter = false,
   style = {},
   ...domProps
 }: GlassSurfaceProps) {
@@ -72,10 +78,13 @@ function GlassSurface({
   ]);
 
   const updateDisplacementMap = useCallback(() => {
+    if (!enableSvgFilter) return;
     feImageRef.current?.setAttribute("href", generateDisplacementMap());
-  }, [generateDisplacementMap]);
+  }, [enableSvgFilter, generateDisplacementMap]);
 
   useEffect(() => {
+    if (!enableSvgFilter) return;
+
     updateDisplacementMap();
     [
       { ref: redChannelRef, offset: redOffset },
@@ -105,9 +114,11 @@ function GlassSurface({
     yChannel,
     mixBlendMode,
     updateDisplacementMap,
+    enableSvgFilter,
   ]);
 
   useEffect(() => {
+    if (!enableSvgFilter) return;
     if (!containerRef.current || typeof ResizeObserver === "undefined") return;
 
     const resizeObserver = new ResizeObserver(() => {
@@ -116,9 +127,11 @@ function GlassSurface({
 
     resizeObserver.observe(containerRef.current);
     return () => resizeObserver.disconnect();
-  }, [updateDisplacementMap]);
+  }, [enableSvgFilter, updateDisplacementMap]);
 
   useEffect(() => {
+    if (!enableSvgFilter) return;
+
     if (typeof document === "undefined") return;
 
     const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
@@ -135,7 +148,7 @@ function GlassSurface({
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [filterId]);
+  }, [enableSvgFilter, filterId]);
 
   const baseStyles = {
     ...style,
@@ -144,10 +157,7 @@ function GlassSurface({
     borderRadius: `${borderRadius}px`,
   };
 
-  const supportsBackdropFilter =
-    typeof CSS !== "undefined" && CSS.supports("backdrop-filter", "blur(10px)");
-
-  const glassStyles: CSSProperties = svgSupported
+  const glassStyles: CSSProperties = enableSvgFilter && svgSupported
     ? {
         ...baseStyles,
         background: isDarkMode
@@ -158,19 +168,7 @@ function GlassSurface({
           0 0 12px 4px color-mix(in oklch, white, transparent 88%) inset,
           0 18px 58px rgba(0, 0, 0, 0.24)`,
       }
-    : {
-        ...baseStyles,
-        background: isDarkMode ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.18)",
-        backdropFilter: supportsBackdropFilter
-          ? `blur(12px) saturate(${saturation}) brightness(1.08)`
-          : undefined,
-        WebkitBackdropFilter: supportsBackdropFilter
-          ? `blur(12px) saturate(${saturation}) brightness(1.08)`
-          : undefined,
-        boxShadow: `inset 0 1px 0 0 rgba(255,255,255,0.12),
-          inset 0 -1px 0 0 rgba(255,255,255,0.06),
-          0 18px 58px rgba(0,0,0,0.24)`,
-      };
+    : createLiteGlassStyles(baseStyles, isDarkMode, saturation);
 
   return (
     <div
@@ -179,14 +177,16 @@ function GlassSurface({
       className={`relative flex items-center justify-center overflow-hidden transition-opacity duration-[260ms] ease-out ${className}`}
       style={glassStyles}
     >
-      <GlassSurfaceFilter
-        filterId={filterId}
-        feImageRef={feImageRef}
-        redChannelRef={redChannelRef}
-        greenChannelRef={greenChannelRef}
-        blueChannelRef={blueChannelRef}
-        gaussianBlurRef={gaussianBlurRef}
-      />
+      {enableSvgFilter && (
+        <GlassSurfaceFilter
+          filterId={filterId}
+          feImageRef={feImageRef}
+          redChannelRef={redChannelRef}
+          greenChannelRef={greenChannelRef}
+          blueChannelRef={blueChannelRef}
+          gaussianBlurRef={gaussianBlurRef}
+        />
+      )}
 
       <div className={`relative z-10 flex h-full w-full items-center justify-center rounded-[inherit] ${contentClassName}`}>
         {children}

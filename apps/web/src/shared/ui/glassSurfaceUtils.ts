@@ -23,6 +23,7 @@ export type GlassSurfaceProps = Omit<HTMLAttributes<HTMLDivElement>, "style"> & 
   mixBlendMode?: CSSProperties["mixBlendMode"];
   className?: string;
   contentClassName?: string;
+  enableSvgFilter?: boolean;
   style?: CSSProperties;
 };
 
@@ -93,4 +94,28 @@ export function createDisplacementMap({
   `;
 
   return `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
+}
+
+export function supportsCssBackdropFilter() {
+  return typeof CSS !== "undefined" && CSS.supports("backdrop-filter", "blur(10px)");
+}
+
+export function createLiteGlassStyles(
+  baseStyles: CSSProperties,
+  isDarkMode: boolean,
+  saturation: number,
+) {
+  const backdropFilter = supportsCssBackdropFilter()
+    ? `blur(12px) saturate(${saturation}) brightness(1.08)`
+    : undefined;
+
+  return {
+    ...baseStyles,
+    background: isDarkMode ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.18)",
+    backdropFilter,
+    WebkitBackdropFilter: backdropFilter,
+    boxShadow: `inset 0 1px 0 0 rgba(255,255,255,0.12),
+      inset 0 -1px 0 0 rgba(255,255,255,0.06),
+      0 18px 58px rgba(0,0,0,0.24)`,
+  };
 }

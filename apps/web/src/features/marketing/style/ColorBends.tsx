@@ -109,6 +109,7 @@ export default function ColorBends({
     mouseInfluence = 1,
     parallax = 0.5,
     noise = 0.1,
+    frameRate = 30,
     bendAmount: _bendAmount = 0
 }) {
     const containerRef = useRef(null);
@@ -121,9 +122,13 @@ export default function ColorBends({
     const pointerTargetRef = useRef(new THREE.Vector2(0, 0));
     const pointerCurrentRef = useRef(new THREE.Vector2(0, 0));
     const pointerSmoothRef = useRef(8);
+    const lastFrameTimeRef = useRef(0);
 
     useEffect(() => {
         const container = containerRef.current;
+        if (!container) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const scene = new THREE.Scene();
         const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
@@ -164,7 +169,7 @@ export default function ColorBends({
         rendererRef.current = renderer;
         // Three r152+ uses outputColorSpace and SRGBColorSpace
         renderer.outputColorSpace = THREE.SRGBColorSpace;
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
         renderer.setClearColor(0x000000, transparent ? 0 : 1);
         renderer.domElement.style.width = '100%';
         renderer.domElement.style.height = '100%';
@@ -190,7 +195,19 @@ export default function ColorBends({
             window.addEventListener('resize', handleResize);
         }
 
-        const loop = () => {
+        const loop = now => {
+            const minFrameMs = 1000 / Math.max(frameRate, 1);
+            if (document.hidden || reduceMotion) {
+                rafRef.current = requestAnimationFrame(loop);
+                return;
+            }
+
+            if (now - lastFrameTimeRef.current < minFrameMs) {
+                rafRef.current = requestAnimationFrame(loop);
+                return;
+            }
+
+            lastFrameTimeRef.current = now;
             const dt = clock.getDelta();
             const elapsed = clock.elapsedTime;
             material.uniforms.uTime.value = elapsed;
@@ -222,7 +239,7 @@ export default function ColorBends({
                 container.removeChild(renderer.domElement);
             }
         };
-    }, [frequency, mouseInfluence, noise, parallax, scale, speed, transparent, warpStrength]);
+    }, [frameRate, frequency, mouseInfluence, noise, parallax, scale, speed, transparent, warpStrength]);
 
     useEffect(() => {
         const material = materialRef.current;

@@ -38,12 +38,13 @@ function HeroSection() {
                     colors={["#ff5c7a", "#8a5cff", "#00ffd1"]}
                     rotation={90}
                     speed={0.2}
+                    frameRate={30}
                     scale={1}
                     frequency={1}
                     warpStrength={1}
-                    mouseInfluence={1}
-                    parallax={0.5}
-                    noise={0.15}
+                    mouseInfluence={0.35}
+                    parallax={0.25}
+                    noise={0.08}
                     transparent
                     style={{
                         WebkitMaskImage: "linear-gradient(to bottom, white 30%, transparent 100%)",
