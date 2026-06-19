@@ -22,7 +22,7 @@ function NewProjectPreviewSection() {
         </div>
 
         <div className="relative overflow-hidden rounded-3xl bg-[#08080d]/90 p-4 shadow-2xl shadow-black/40 sm:p-5">
-          <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/50 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent" />
           <div className="grid gap-3 lg:grid-cols-[190px_1fr]">
             <div className="rounded-2xl bg-white/[0.055] p-4">
               <div className="flex items-center justify-between gap-4">
@@ -30,10 +30,10 @@ function NewProjectPreviewSection() {
                   <p className="text-sm font-semibold text-white">New project</p>
                   <p className="mt-1 text-xs text-zinc-500">Personal workspace</p>
                 </div>
-                <FiServer className="shrink-0 text-violet-300" aria-hidden="true" />
+                <FiServer className="shrink-0 text-[#a855f7]" aria-hidden="true" />
               </div>
               <div className="mt-5 h-1.5 overflow-hidden rounded-2xl bg-white/[0.06]">
-                <div className="h-full w-2/3 rounded-2xl bg-gradient-to-r from-indigo-400 via-violet-300 to-fuchsia-300" />
+                <div className="h-full w-2/3 rounded-2xl bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#c084fc]" />
               </div>
             </div>
             <div className="flex min-w-0 items-center gap-3 rounded-2xl bg-white/[0.055] px-4 py-3 text-sm text-zinc-500">
@@ -47,7 +47,7 @@ function NewProjectPreviewSection() {
                 key={title}
                 className="group flex min-h-36 cursor-pointer flex-col justify-between rounded-2xl bg-white/[0.045] p-4 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-violet-300">
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-[#c084fc]">
                   <Icon aria-hidden="true" />
                 </span>
                 <span>

@@ -9,6 +9,7 @@ import Login from "@/features/auth/components/Login";
 import WorkflowSection from "../components/WorkflowSection";
 import CapabilitiesSection from "../components/CapabilitiesSection";
 import NewProjectPreviewSection from "../components/NewProjectPreviewSection";
+import LaserFlowSection from "../components/LaserFlowSection";
 import FinalCtaSection from "../components/FinalCtaSection";
 
 function Home() {
@@ -23,6 +24,7 @@ function Home() {
             </section>
             <div className="relative flex flex-col items-center">
                 <NewProjectPreviewSection />
+                <LaserFlowSection />
                 <WorkflowSection />
                 <CapabilitiesSection />
                 <LogoLoopSection />

@@ -111,20 +111,20 @@ function HeroSection() {
                     className="w-full min-w-0"
                 >
                     <div className="relative overflow-hidden rounded-3xl bg-[#08080d]/90 p-5 shadow-2xl shadow-black/40 sm:p-6">
-                        <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/50 to-transparent" />
+                        <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent" />
                         <div className="flex items-start justify-between gap-4">
                             <div>
                                 <p className="text-sm font-semibold leading-none text-white">nova-cloud/web</p>
                                 <p className="mt-1.5 text-xs text-zinc-500">main · production</p>
                             </div>
-                            <div className="flex items-center gap-2 rounded-2xl bg-violet-300/10 px-3 py-2 text-xs font-medium text-violet-100">
+                            <div className="flex items-center gap-2 rounded-2xl bg-[#7c3aed]/15 px-3 py-2 text-xs font-medium text-[#c084fc]">
                                 <FiCheckCircle className="text-base" aria-hidden="true" />
                                 Ready
                             </div>
                         </div>
                         <div className="mt-5 h-2 overflow-hidden rounded-2xl bg-white/[0.06]">
                             <div
-                                className="h-full rounded-2xl bg-gradient-to-r from-indigo-400 via-violet-300 to-fuchsia-300 transition-all duration-700 ease-out"
+                                className="h-full rounded-2xl bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#c084fc] transition-all duration-700 ease-out"
                                 style={{ width: `${((activeStep + 1) / previewSteps.length) * 100}%` }}
                             />
                         </div>
@@ -134,7 +134,7 @@ function HeroSection() {
                                     key={step.label}
                                     className={`rounded-2xl px-3 py-3 text-xs font-medium transition-all duration-500 ${
                                         activeStep === index
-                                            ? 'bg-violet-300 text-black shadow-xl shadow-violet-300/20'
+                                            ? 'bg-[#c084fc] text-black shadow-xl shadow-[#a855f7]/20'
                                             : 'bg-white/[0.045] text-zinc-400'
                                     }`}
                                 >
@@ -144,11 +144,11 @@ function HeroSection() {
                         </div>
                         <div className="mt-4 grid gap-3 text-sm sm:grid-cols-[1fr_auto]">
                             <div className="flex items-center gap-3 rounded-2xl bg-white/[0.055] p-3">
-                                <FiGitBranch className="text-violet-300" aria-hidden="true" />
+                                <FiGitBranch className="text-[#a855f7]" aria-hidden="true" />
                                 <span className="text-zinc-300">GitHub connected</span>
                             </div>
                             <div className="flex items-center gap-2 rounded-2xl bg-white/[0.045] px-3 py-3 text-xs text-zinc-400">
-                                <FiGlobe className="text-fuchsia-300" aria-hidden="true" />
+                                <FiGlobe className="text-[#c084fc]" aria-hidden="true" />
                                 us-east
                             </div>
                         </div>
@@ -156,14 +156,14 @@ function HeroSection() {
                             <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
                                 <span className="h-2 w-2 rounded-full bg-red-400/80" />
                                 <span className="h-2 w-2 rounded-full bg-yellow-300/80" />
-                                <span className="h-2 w-2 rounded-full bg-violet-300/80" />
+                                <span className="h-2 w-2 rounded-full bg-[#a855f7]/80" />
                             </div>
                             <div className="p-4 font-mono text-xs leading-6 text-zinc-400">
-                                <FiTerminal className="mb-3 text-violet-300" aria-hidden="true" />
+                                <FiTerminal className="mb-3 text-[#a855f7]" aria-hidden="true" />
                                 <p className="transition-colors duration-500">
                                     {previewSteps[activeStep].command}
                                 </p>
-                                <p className="text-violet-300 transition-colors duration-500">
+                                <p className="text-[#c084fc] transition-colors duration-500">
                                     {previewSteps[activeStep].output}
                                 </p>
                             </div>

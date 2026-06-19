@@ -26,7 +26,7 @@ function LogoLoopSection() {
     <section id="technologies" className="w-full scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
-          <p className="font-mono text-sm font-semibold uppercase tracking-normal text-violet-300">
+          <p className="font-mono text-sm font-semibold uppercase tracking-normal text-[#c084fc]">
             Nova Runtime
           </p>
           <h2 className="mt-8 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">

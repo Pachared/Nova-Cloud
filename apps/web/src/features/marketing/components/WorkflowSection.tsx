@@ -47,7 +47,7 @@ function WorkflowSection() {
                 <span className="text-xs font-medium uppercase tracking-[0.24em] text-zinc-600">
                   Step 0{index + 1}
                 </span>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-300/10 text-violet-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7c3aed]/15 text-[#c084fc]">
                   <Icon className="text-xl" aria-hidden="true" />
                 </div>
                 <div>

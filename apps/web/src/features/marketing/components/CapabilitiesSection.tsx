@@ -24,18 +24,18 @@ function CapabilitiesSection() {
             </p>
           </div>
           <div className="mt-8 rounded-2xl bg-[#0d0c12] p-4 font-mono text-xs leading-6 text-zinc-500">
-            <p className="text-violet-300">$ nova status --project nova-cloud</p>
+            <p className="text-[#c084fc]">$ nova status --project nova-cloud</p>
             <p>deployments: healthy</p>
             <p>services: web, api, worker</p>
             <p>environments: preview, production</p>
-            <p className="text-fuchsia-300">observability: logs + health checks active</p>
+            <p className="text-[#a855f7]">observability: logs + health checks active</p>
           </div>
         </div>
 
         <div className="divide-y divide-white/[0.06] rounded-2xl bg-white/[0.045] px-5">
           {capabilities.map(([title, description, Icon]) => (
             <article key={title} className="flex gap-4 py-5">
-              <Icon className="mt-1 shrink-0 text-xl text-violet-300" aria-hidden="true" />
+              <Icon className="mt-1 shrink-0 text-xl text-[#a855f7]" aria-hidden="true" />
               <div>
                 <h3 className="text-base font-semibold text-white">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-zinc-500">{description}</p>
