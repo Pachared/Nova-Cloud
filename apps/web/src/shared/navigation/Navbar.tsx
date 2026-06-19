@@ -7,7 +7,6 @@ type NavbarProps = {
 };
 
 const navLinks = [
-  { href: "#home", label: "หน้าแรก" },
   { href: "#templates", label: "Templates" },
   { href: "#workflow", label: "Workflow" },
   { href: "#features", label: "ฟีเจอร์" },

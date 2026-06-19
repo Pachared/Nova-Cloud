@@ -19,12 +19,6 @@ function NewProjectPreviewSection() {
             หน้า New Project ของ Nova ถูกออกแบบให้ต่อยอดจาก GitHub, template,
             database หรือ empty service ได้โดยตรง
           </p>
-          <a
-            href="/new"
-            className="mt-8 inline-flex cursor-pointer items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-zinc-200"
-          >
-            สร้างโปรเจกต์ใหม่ของคุณ
-          </a>
         </div>
 
         <div className="rounded-2xl bg-[#111018] p-4 shadow-2xl shadow-black/40">
