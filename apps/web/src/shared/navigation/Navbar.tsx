@@ -26,13 +26,13 @@ function Navbar({ onLoginClick }: NavbarProps) {
         borderRadius={16}
         backgroundOpacity={0.05}
         saturation={1.6}
-        contentClassName="flex w-full flex-wrap items-center justify-between gap-3 px-3 py-2.5 sm:px-4 md:flex-nowrap lg:px-5"
+        contentClassName="grid w-full grid-cols-[auto_auto] items-center gap-x-4 gap-y-3 px-3 py-2.5 sm:px-4 md:grid-cols-[minmax(150px,1fr)_auto_minmax(150px,1fr)] md:gap-x-8 lg:px-5"
         className="mx-auto w-full max-w-7xl rounded-2xl"
       >
         <button
           type="button"
           onClick={() => window.location.assign("/")}
-          className="group flex min-w-0 cursor-pointer items-center gap-2 rounded-2xl pr-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-400/70"
+          className="group flex min-w-0 cursor-pointer items-center gap-2 justify-self-start rounded-2xl pr-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-400/70"
           aria-label="Go to Nova home"
         >
           <img
@@ -44,7 +44,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
             Nova
           </span>
         </button>
-        <div className="order-3 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-2xl bg-white/5 p-1 md:order-none md:w-auto md:overflow-visible md:bg-transparent md:p-0">
+        <div className="order-3 col-span-2 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-2xl bg-white/5 p-1 md:order-none md:col-span-1 md:w-auto md:justify-self-center md:overflow-visible md:bg-transparent md:p-0">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -58,7 +58,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
         <button
           type="button"
           onClick={onLoginClick}
-          className="shrink-0 cursor-pointer rounded-2xl bg-white px-4 py-2.5 text-xs font-medium tracking-tight text-black shadow-lg shadow-black/20 transition-all duration-300 hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-400/70 sm:px-5 sm:text-sm md:px-6 md:text-base"
+          className="shrink-0 cursor-pointer justify-self-end rounded-2xl bg-white px-4 py-2.5 text-xs font-medium tracking-tight text-black shadow-lg shadow-black/20 transition-all duration-300 hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-400/70 sm:px-5 sm:text-sm md:px-6 md:text-base"
         >
           เข้าสู่ระบบ
         </button>
