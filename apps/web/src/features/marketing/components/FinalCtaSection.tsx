@@ -1,7 +1,7 @@
 function FinalCtaSection() {
   return (
-    <section className="nova-page-gutter py-20">
-      <div className="relative mx-auto max-w-7xl rounded-2xl bg-black px-6 py-16 text-center sm:px-10 sm:py-20">
+    <section className="nova-page-gutter py-16 sm:py-20">
+      <div className="relative mx-auto max-w-7xl rounded-2xl bg-black px-5 py-14 text-center sm:px-10 sm:py-20">
         <div
           className="pointer-events-none absolute inset-x-[-8%] top-0 z-0 h-64 overflow-hidden"
           style={{

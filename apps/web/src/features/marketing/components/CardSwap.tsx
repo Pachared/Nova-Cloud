@@ -169,7 +169,7 @@ function CardSwap({
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 right-0 max-w-full origin-bottom-right -translate-x-[18%] translate-y-[20%] overflow-visible [perspective:900px] max-md:scale-75 max-md:-translate-x-[2%] max-md:translate-y-[25%]"
+      className="absolute bottom-0 right-0 max-w-full origin-bottom-right -translate-x-[4%] translate-y-[20%] overflow-visible [perspective:900px] max-md:scale-[0.72] max-md:-translate-x-[4%] max-md:translate-y-[16%]"
       style={{ width, height }}
     >
       {cards.map((card, index) =>

@@ -9,9 +9,22 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: clip;
     font-family: var(--font-english), var(--font-thai), sans-serif;
     background-color: #000000;
     color: #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+svg,
+canvas {
+    max-width: 100%;
 }
 
 .nova-page-gutter {

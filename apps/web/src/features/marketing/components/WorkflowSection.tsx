@@ -32,8 +32,8 @@ const workflowSteps = [
 
 function WorkflowSection() {
   return (
-    <section id="workflow" className="nova-page-gutter scroll-mt-32 py-24">
-      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.18fr_0.82fr] lg:items-center lg:gap-20">
+    <section id="workflow" className="nova-page-gutter scroll-mt-32 py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto grid max-w-7xl gap-10 sm:gap-14 lg:grid-cols-[1.18fr_0.82fr] lg:items-center lg:gap-20">
         <div className="max-w-xl lg:order-2 lg:justify-self-end">
           <h2 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
             จาก repository ไป production ใน workflow เดียว
@@ -48,9 +48,9 @@ function WorkflowSection() {
           </div>
         </div>
 
-        <div className="relative h-[440px] overflow-hidden sm:h-[500px] lg:order-1">
+        <div className="relative h-[360px] overflow-hidden sm:h-[460px] lg:h-[500px] lg:order-1">
           <CardSwap
-            width="min(31.25rem, 86vw)"
+            width="min(34rem, 90vw)"
             height="25rem"
             cardDistance={-60}
             delay={5200}
@@ -70,9 +70,9 @@ function WorkflowSection() {
                   <div className="flex items-start justify-between gap-6">
                     <div>
                       <div className="flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-[#6366f1]" />
-                        <span className="h-2 w-2 rounded-full bg-[#a855f7]" />
-                        <span className="h-2 w-2 rounded-full bg-[#c084fc]" />
+                        <span className="h-2 w-2 rounded-full bg-red-400" />
+                        <span className="h-2 w-2 rounded-full bg-yellow-300" />
+                        <span className="h-2 w-2 rounded-full bg-emerald-400" />
                       </div>
                       <span className="mt-5 block font-mono text-3xl font-semibold leading-none text-[#c084fc] sm:text-4xl">
                         0{index + 1}

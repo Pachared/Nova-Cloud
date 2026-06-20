@@ -33,7 +33,7 @@ function SignalCard({ signal }: { signal: Signal }) {
   const { Icon } = signal;
 
   return (
-    <article className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:border-[#c084fc]/45 hover:bg-white/[0.05]">
+    <article className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:border-[#c084fc]/45 hover:bg-white/[0.05] hover:shadow-[0_14px_36px_rgba(168,85,247,0.14)]">
       <div className="flex items-center justify-between gap-3">
         <span className="inline-flex items-center gap-2 text-xs font-medium text-[#c084fc]">
           <Icon aria-hidden="true" />
@@ -49,7 +49,7 @@ function SignalCard({ signal }: { signal: Signal }) {
 
 function DeveloperSignalsSection() {
   return (
-    <section className="nova-page-gutter w-full py-20" aria-labelledby="developer-signals-title">
+    <section className="nova-page-gutter w-full py-16 sm:py-20" aria-labelledby="developer-signals-title">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <h2 id="developer-signals-title" className="text-4xl font-bold leading-tight text-white sm:text-5xl">
@@ -60,10 +60,10 @@ function DeveloperSignalsSection() {
           </p>
         </div>
 
-        <div className="relative mt-12 h-[520px] overflow-hidden sm:mt-14 md:h-[580px]">
-          <div className="grid h-full grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="relative mt-10 h-[480px] overflow-hidden sm:mt-14 sm:h-[560px] lg:h-[580px]">
+          <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {signalColumns.map((signals, columnIndex) => (
-              <div key={columnIndex} className={`overflow-hidden ${columnIndex > 0 ? "hidden md:block" : ""}`}>
+              <div key={columnIndex} className={`overflow-hidden ${columnIndex > 1 ? "hidden lg:block" : ""}`}>
                 <div
                   className={`nova-signal-track space-y-4 ${columnIndex === 1 ? "nova-signal-track-reverse" : ""}`}
                   style={{ "--signal-delay": `${columnIndex * -6}s` } as CSSProperties}

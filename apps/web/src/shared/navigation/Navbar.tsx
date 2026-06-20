@@ -27,7 +27,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
         backgroundOpacity={0.05}
         saturation={1.6}
         enableSvgFilter
-        contentClassName="grid w-full grid-cols-[auto_auto] items-center gap-x-4 gap-y-3 px-3 py-2.5 sm:px-4 md:grid-cols-[minmax(150px,1fr)_auto_minmax(150px,1fr)] md:gap-x-8 lg:px-5"
+        contentClassName="grid w-full grid-cols-[auto_auto] items-center gap-x-4 gap-y-3 px-3 py-2.5 sm:px-4 lg:grid-cols-[minmax(150px,1fr)_auto_minmax(150px,1fr)] lg:gap-x-8 lg:px-5"
         className="mx-auto w-full max-w-7xl rounded-2xl"
       >
         <button
@@ -45,7 +45,7 @@ function Navbar({ onLoginClick }: NavbarProps) {
             Nova
           </span>
         </button>
-        <div className="order-3 col-span-2 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-2xl bg-white/5 p-1 md:order-none md:col-span-1 md:w-auto md:justify-self-center md:overflow-visible md:bg-transparent md:p-0">
+        <div className="order-3 col-span-2 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-2xl bg-white/5 p-1 lg:order-none lg:col-span-1 lg:w-auto lg:justify-self-center lg:overflow-visible lg:bg-transparent lg:p-0">
           {navLinks.map((link) => (
             <a
               key={link.href}

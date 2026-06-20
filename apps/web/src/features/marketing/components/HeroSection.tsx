@@ -4,10 +4,11 @@ import React, { useState } from 'react'
 
 import RotatingText from '../style/RotatingText'
 import ColorBends from '../style/ColorBends'
-import { FiCheckCircle, FiGitBranch, FiGlobe, FiTerminal } from 'react-icons/fi'
+import { FiCheckCircle, FiGitBranch, FiGlobe } from 'react-icons/fi'
 
 import { HeroConstants } from '../constants/constants'
 import GlassSurface from '@/shared/ui/GlassSurface'
+import TerminalTyping from './TerminalTyping'
 
 function HeroSection() {
     const [activeStep, setActiveStep] = useState(0);
@@ -125,12 +126,6 @@ function HeroSection() {
                                 Ready
                             </div>
                         </div>
-                        <div className="mt-5 h-2 overflow-hidden rounded-2xl bg-white/[0.06]">
-                            <div
-                                className="h-full rounded-2xl bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#c084fc] transition-all duration-700 ease-out"
-                                style={{ width: `${((activeStep + 1) / previewSteps.length) * 100}%` }}
-                            />
-                        </div>
                         <div className="mt-6 grid gap-3 sm:grid-cols-3">
                             {previewSteps.map((step, index) => (
                                 <div
@@ -157,18 +152,18 @@ function HeroSection() {
                         </div>
                         <div className="mt-3 overflow-hidden rounded-2xl bg-[#030308] shadow-inner shadow-black/70">
                             <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
-                                <span className="h-2 w-2 rounded-full bg-red-400/80" />
-                                <span className="h-2 w-2 rounded-full bg-yellow-300/80" />
-                                <span className="h-2 w-2 rounded-full bg-[#a855f7]/80" />
+                                <span className="h-2 w-2 rounded-full bg-red-400" />
+                                <span className="h-2 w-2 rounded-full bg-yellow-300" />
+                                <span className="h-2 w-2 rounded-full bg-emerald-400" />
                             </div>
                             <div className="p-4 font-mono text-xs leading-6 text-zinc-400">
-                                <FiTerminal className="mb-3 text-[#a855f7]" aria-hidden="true" />
-                                <p className="transition-colors duration-500">
-                                    {previewSteps[activeStep].command}
-                                </p>
-                                <p className="text-[#c084fc] transition-colors duration-500">
-                                    {previewSteps[activeStep].output}
-                                </p>
+                                <p className="mb-3 text-[#c084fc]">&gt;_</p>
+                                <TerminalTyping
+                                    key={activeStep}
+                                    command={previewSteps[activeStep].command}
+                                    output={previewSteps[activeStep].output}
+                                    className="text-zinc-400 [&>p:last-child]:text-[#c084fc]"
+                                />
                             </div>
                         </div>
                     </div>

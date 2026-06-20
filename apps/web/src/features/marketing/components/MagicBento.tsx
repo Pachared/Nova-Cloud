@@ -108,14 +108,15 @@ function MagicBentoCard({ item, index, animationsDisabled, textAutoHide, enableS
 
   return (
     <article ref={cardRef} style={cardStyle} onPointerMove={handlePointerMove} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave} onClick={handleClick} className={`nova-magic-card group relative z-10 min-h-48 overflow-hidden rounded-2xl bg-[#15131c] p-6 ${enableBorderGlow ? "nova-magic-border" : ""} ${sizeClass}`}>
-      <div className="relative z-10 flex items-center justify-between">
+      <div className="relative z-10">
         <span className="text-xs font-semibold uppercase text-[#c084fc]">{item.label}</span>
-        <Icon className="text-2xl text-[#c084fc]" aria-hidden="true" />
       </div>
       <div className="relative z-10 mt-10">
         <h3 className="text-xl font-semibold text-white">{item.title}</h3>
         <p className={`mt-3 max-w-md text-sm leading-6 text-zinc-400 ${descriptionClass}`}>{item.description}</p>
       </div>
+      <span className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-[#a855f7]/20 opacity-0 blur-3xl transition duration-300 group-hover:opacity-100" aria-hidden="true" />
+      <Icon className="pointer-events-none absolute -bottom-8 -right-6 z-10 text-[7rem] text-[#c084fc]/30 transition duration-300 group-hover:drop-shadow-[0_0_24px_rgba(192,132,252,0.45)] group-hover:text-[#c084fc]/60 sm:text-[9rem] lg:text-[11rem]" aria-hidden="true" />
     </article>
   );
 }

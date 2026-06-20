@@ -9,8 +9,8 @@ const createOptions = [
 
 function NewProjectPreviewSection() {
   return (
-    <section id="templates" className="nova-page-gutter scroll-mt-32 pb-0 pt-20">
-      <div className="relative mx-auto grid max-w-7xl gap-10 pb-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+    <section id="templates" className="nova-page-gutter scroll-mt-32 pb-0 pt-16 sm:pt-20">
+      <div className="relative mx-auto grid max-w-7xl gap-8 pb-8 sm:gap-10 sm:pb-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/70 to-transparent" />
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -46,9 +46,9 @@ function NewProjectPreviewSection() {
               <button
                 key={title}
                 data-project-option={id}
-                className="group flex min-h-36 cursor-pointer flex-col justify-between rounded-2xl bg-white/[0.045] p-4 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
+                className="group flex min-h-36 cursor-pointer flex-col justify-between rounded-2xl bg-white/[0.045] p-4 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.08] hover:shadow-[0_14px_34px_rgba(168,85,247,0.14)]"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-[#c084fc]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-[#c084fc] group-hover:shadow-[0_0_28px_rgba(168,85,247,0.42)]">
                   <Icon aria-hidden="true" />
                 </span>
                 <span>
