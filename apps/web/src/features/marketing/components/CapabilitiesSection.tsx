@@ -14,7 +14,7 @@ const capabilities: MagicBentoItem[] = [
 
 function CapabilitiesSection() {
   return (
-    <section id="features" className="nova-page-gutter scroll-mt-32 py-24">
+    <section id="features" className="nova-page-gutter relative scroll-mt-32 py-24">
       <div className="mx-auto max-w-7xl py-10 sm:py-12 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-16">
           <div>
@@ -26,15 +26,20 @@ function CapabilitiesSection() {
               observability และ release quality ให้มั่นใจ
             </p>
           </div>
-          <div className="overflow-hidden rounded-2xl bg-black/45 font-mono text-xs leading-6 text-zinc-500 shadow-[0_18px_50px_rgba(0,0,0,0.22)]">
-            <div className="flex items-center gap-2 px-5 py-3 text-zinc-600"><span className="h-2 w-2 rounded-full bg-[#6366f1]" /><span className="h-2 w-2 rounded-full bg-[#a855f7]" /><span className="h-2 w-2 rounded-full bg-[#c084fc]" /><span className="ml-2">nova system status</span></div>
-            <div className="border-t border-white/[0.06] px-5 py-4"><p className="text-[#c084fc]">$ nova status --project nova-cloud</p><p>deployments: healthy</p><p>services: web, api, worker</p><p>environments: preview, production</p><p className="text-[#a855f7]">observability: logs + health checks active</p></div>
+          <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[radial-gradient(circle_at_12%_0%,rgba(168,85,247,0.18),transparent_34%),radial-gradient(circle_at_88%_100%,rgba(99,102,241,0.12),transparent_36%),linear-gradient(135deg,rgba(18,16,27,0.96),rgba(7,6,12,0.98))] font-mono text-xs leading-6 text-zinc-500 shadow-[0_18px_50px_rgba(0,0,0,0.22)]">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.04),transparent)]" aria-hidden="true" />
+            <div className="relative flex items-center gap-2 px-5 py-3 text-zinc-500"><span className="h-2 w-2 rounded-full bg-[#6366f1]" /><span className="h-2 w-2 rounded-full bg-[#a855f7]" /><span className="h-2 w-2 rounded-full bg-[#c084fc]" /><span className="ml-2">nova system status</span></div>
+            <div className="relative border-t border-white/[0.08] px-5 py-4"><p className="text-[#c084fc]">$ nova status --project nova-cloud</p><p>deployments: healthy</p><p>services: web, api, worker</p><p>environments: preview, production</p><p className="text-[#a855f7]">observability: logs + health checks active</p></div>
           </div>
         </div>
         <div className="mt-10">
           <MagicBento items={capabilities} textAutoHide={true} enableStars={true} enableSpotlight={true} enableBorderGlow={true} disableAnimations={false} spotlightRadius={300} particleCount={12} enableTilt={false} glowColor="132, 0, 255" clickEffect={true} enableMagnetism={true} />
         </div>
       </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
+        aria-hidden="true"
+      />
     </section>
   );
 }

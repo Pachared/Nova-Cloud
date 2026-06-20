@@ -27,6 +27,7 @@ type CardSwapProps = {
   delay?: number;
   pauseOnHover?: boolean;
   skewAmount?: number;
+  easing?: "linear" | "elastic";
   children: ReactNode;
 };
 
@@ -47,19 +48,20 @@ function getSlot(index: number, distance: number, verticalDistance: number, tota
   return {
     x: index * distance,
     y: -index * verticalDistance,
-    z: -index * distance * 1.5,
+    z: -index * Math.abs(distance) * 1.5,
     zIndex: total - index,
   };
 }
 
 function CardSwap({
-  width = "100%",
-  height = "100%",
-  cardDistance = 18,
-  verticalDistance = 22,
+  width = 500,
+  height = 400,
+  cardDistance = 60,
+  verticalDistance = 70,
   delay = 5200,
-  pauseOnHover = true,
-  skewAmount = 0,
+  pauseOnHover = false,
+  skewAmount = 6,
+  easing = "elastic",
   children,
 }: CardSwapProps) {
   const cards = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
@@ -70,6 +72,10 @@ function CardSwap({
   useEffect(() => {
     const nodes = Array.from(containerRef.current?.querySelectorAll<HTMLDivElement>("[data-card-swap-item]") ?? []);
     if (nodes.length < 2) return;
+    const timing =
+      easing === "elastic"
+        ? { ease: "elastic.out(0.6,0.9)", durDrop: 2, durMove: 2, durReturn: 2, promoteOverlap: 0.9, returnDelay: 0.05 }
+        : { ease: "power1.inOut", durDrop: 0.8, durMove: 0.8, durReturn: 0.8, promoteOverlap: 0.45, returnDelay: 0.2 };
 
     const place = (node: HTMLDivElement, slot: Slot) => {
       gsap.set(node, {
@@ -95,27 +101,31 @@ function CardSwap({
       const frontNode = nodes[front];
       if (frontNode === null || rest.length === 0) return;
 
-      const dropDistance = containerRef.current?.offsetHeight ?? 360;
       const timeline = gsap.timeline({ defaults: { ease: "power2.inOut" } });
       timelineRef.current = timeline;
 
-      timeline.to(frontNode, { y: `+=${dropDistance}`, duration: 0.7 });
+      timeline.to(frontNode, { y: "+=500", duration: timing.durDrop, ease: timing.ease });
+      timeline.addLabel("promote", `-=${timing.durDrop * timing.promoteOverlap}`);
       rest.forEach((cardIndex, index) => {
         const node = nodes[cardIndex];
         if (node === null) return;
         const slot = getSlot(index, cardDistance, verticalDistance, nodes.length);
-        timeline.set(node, { zIndex: slot.zIndex }, "<+=0.1");
-        timeline.to(node, { x: slot.x, y: slot.y, z: slot.z, duration: 0.72 }, "<");
+        timeline.set(node, { zIndex: slot.zIndex }, "promote");
+        timeline.to(node, { x: slot.x, y: slot.y, z: slot.z, duration: timing.durMove, ease: timing.ease }, `promote+=${index * 0.15}`);
       });
 
       const backSlot = getSlot(nodes.length - 1, cardDistance, verticalDistance, nodes.length);
-      timeline.set(frontNode, { zIndex: backSlot.zIndex });
-      timeline.to(frontNode, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: 0.72 }, ">-=0.25");
+      timeline.addLabel("return", `promote+=${timing.durMove * timing.returnDelay}`);
+      timeline.call(() => {
+        gsap.set(frontNode, { zIndex: backSlot.zIndex });
+      }, undefined, "return");
+      timeline.to(frontNode, { x: backSlot.x, y: backSlot.y, z: backSlot.z, duration: timing.durReturn, ease: timing.ease }, "return");
       timeline.call(() => {
         order.current = [...rest, front];
       });
     };
 
+    swap();
     let isPaused = false;
     let isInView = true;
     const timer = window.setInterval(() => {
@@ -154,10 +164,14 @@ function CardSwap({
         container.removeEventListener("mouseleave", resume);
       }
     };
-  }, [cards, cardDistance, delay, pauseOnHover, skewAmount, verticalDistance]);
+  }, [cards, cardDistance, delay, easing, pauseOnHover, skewAmount, verticalDistance]);
 
   return (
-    <div ref={containerRef} className="relative max-w-full [perspective:900px]" style={{ width, height }}>
+    <div
+      ref={containerRef}
+      className="absolute bottom-0 right-0 max-w-full origin-bottom-right -translate-x-[18%] translate-y-[20%] overflow-visible [perspective:900px] max-md:scale-75 max-md:-translate-x-[2%] max-md:translate-y-[25%]"
+      style={{ width, height }}
+    >
       {cards.map((card, index) =>
         isValidElement<CardProps>(card)
           ? cloneElement(card, {

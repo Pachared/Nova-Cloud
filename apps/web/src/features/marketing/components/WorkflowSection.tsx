@@ -4,17 +4,37 @@ import { FiActivity, FiGitBranch, FiSettings, FiUploadCloud } from "react-icons/
 import CardSwap, { Card } from "./CardSwap";
 
 const workflowSteps = [
-  { title: "Connect repository", description: "เชื่อม GitHub repository แล้วให้ Nova ตรวจ framework และคำสั่ง build ให้ทันที", icon: FiGitBranch },
-  { title: "Configure runtime", description: "ตั้งค่า environment variables, region, branch และ service runtime ในจุดเดียว", icon: FiSettings },
-  { title: "Deploy safely", description: "ปล่อย build แบบ preview หรือ production พร้อม rollback เมื่อมีปัญหา", icon: FiUploadCloud },
-  { title: "Monitor releases", description: "ดู deployment status, logs, uptime และ runtime events หลัง deploy", icon: FiActivity },
+  {
+    title: "Connect repository",
+    description: "เชื่อม GitHub repository แล้วให้ Nova ตรวจ framework และคำสั่ง build ให้ทันที",
+    icon: FiGitBranch,
+    tags: ["Source", "Branch", "Build"],
+  },
+  {
+    title: "Configure runtime",
+    description: "ตั้งค่า environment variables, region, branch และ service runtime ในจุดเดียว",
+    icon: FiSettings,
+    tags: ["Runtime", "Env", "Region"],
+  },
+  {
+    title: "Deploy safely",
+    description: "ปล่อย build แบบ preview หรือ production พร้อม rollback เมื่อมีปัญหา",
+    icon: FiUploadCloud,
+    tags: ["Preview", "Release", "Rollback"],
+  },
+  {
+    title: "Monitor releases",
+    description: "ดู deployment status, logs, uptime และ runtime events หลัง deploy",
+    icon: FiActivity,
+    tags: ["Logs", "Health", "Events"],
+  },
 ];
 
 function WorkflowSection() {
   return (
     <section id="workflow" className="nova-page-gutter scroll-mt-32 py-24">
-      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-20">
-        <div className="max-w-xl">
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.18fr_0.82fr] lg:items-center lg:gap-20">
+        <div className="max-w-xl lg:order-2 lg:justify-self-end">
           <h2 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
             จาก repository ไป production ใน workflow เดียว
           </h2>
@@ -28,27 +48,62 @@ function WorkflowSection() {
           </div>
         </div>
 
-        <div className="relative h-[380px] overflow-hidden rounded-3xl bg-[#0d0b13] p-5 sm:h-[430px] sm:p-7">
-          <div className="pointer-events-none absolute inset-x-[12%] top-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/70 to-transparent" />
-          <CardSwap cardDistance={16} verticalDistance={20} delay={5200} pauseOnHover>
+        <div className="relative h-[440px] overflow-hidden sm:h-[500px] lg:order-1">
+          <CardSwap
+            width="min(31.25rem, 86vw)"
+            height="25rem"
+            cardDistance={-60}
+            delay={5200}
+            pauseOnHover
+            skewAmount={0}
+          >
             {workflowSteps.map((step, index) => {
               const Icon = step.icon;
 
               return (
-                <Card key={step.title} customClass="p-6 sm:p-8">
+                <Card
+                  key={step.title}
+                  customClass="border border-white/[0.08] bg-[radial-gradient(circle_at_18%_0%,rgba(168,85,247,0.22),transparent_34%),linear-gradient(145deg,rgba(28,25,39,0.98),rgba(10,9,15,0.99))] p-6 shadow-[0_26px_90px_rgba(0,0,0,0.55),0_0_0_1px_rgba(168,85,247,0.08)] sm:p-8"
+                >
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/75 to-transparent" />
+                  <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[#a855f7]/12 blur-3xl" />
                   <div className="flex items-start justify-between gap-6">
-                    <span className="font-mono text-xs font-semibold text-[#c084fc]">WORKFLOW 0{index + 1}</span>
-                    <Icon className="text-2xl text-[#c084fc]" aria-hidden="true" />
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-[#6366f1]" />
+                        <span className="h-2 w-2 rounded-full bg-[#a855f7]" />
+                        <span className="h-2 w-2 rounded-full bg-[#c084fc]" />
+                      </div>
+                      <span className="mt-5 block font-mono text-3xl font-semibold leading-none text-[#c084fc] sm:text-4xl">
+                        0{index + 1}
+                      </span>
+                    </div>
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#a855f7]/10 text-[#c084fc] ring-1 ring-[#c084fc]/20">
+                      <Icon className="text-2xl" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="mt-16 sm:mt-20">
+                  <div className="mt-12 sm:mt-14">
                     <h3 className="text-2xl font-semibold text-white sm:text-3xl">{step.title}</h3>
                     <p className="mt-4 max-w-md text-sm leading-7 text-zinc-400 sm:text-base">{step.description}</p>
                   </div>
-                  <div className="absolute inset-x-6 bottom-6 h-px bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#c084fc] opacity-80 sm:inset-x-8 sm:bottom-8" />
+                  <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
+                    <div className="h-px bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#c084fc] opacity-80" />
+                    <div className="mt-4 flex flex-wrap gap-2 text-[0.68rem] font-medium uppercase tracking-[0.14em] text-zinc-500">
+                      {step.tags.map((tag) => (
+                        <span key={tag} className="rounded-full bg-white/[0.04] px-2.5 py-1">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </Card>
               );
             })}
           </CardSwap>
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-20 bg-gradient-to-t from-black/65 via-black/25 to-transparent"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </section>
