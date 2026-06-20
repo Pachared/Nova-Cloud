@@ -9,7 +9,7 @@ const createOptions = [
 
 function NewProjectPreviewSection() {
   return (
-    <section id="templates" className="scroll-mt-32 px-4 pb-0 pt-20 sm:px-6 lg:px-8">
+    <section id="templates" className="nova-page-gutter scroll-mt-32 pb-0 pt-20">
       <div className="relative mx-auto grid max-w-7xl gap-10 pb-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/70 to-transparent" />
         <div>

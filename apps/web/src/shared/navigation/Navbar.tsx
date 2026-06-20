@@ -17,7 +17,7 @@ const navLinks = [
 function Navbar({ onLoginClick }: NavbarProps) {
   return (
     <nav
-      className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-6 lg:px-8"
+      className="nova-page-gutter fixed inset-x-0 top-3 z-50 sm:top-4"
       aria-label="Primary navigation"
     >
       <GlassSurface

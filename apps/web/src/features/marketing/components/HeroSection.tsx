@@ -31,7 +31,7 @@ function HeroSection() {
     ];
 
     return (
-        <div className="relative w-full overflow-hidden px-4 pt-28 pb-16 sm:px-6 md:pt-32 md:pb-24 lg:px-8 2xl:py-32">
+        <div className="nova-page-gutter relative w-full overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24 2xl:py-32">
             <div className="pointer-events-none absolute inset-x-[-18vw] -top-28 -bottom-36 z-0 opacity-[0.58] sm:inset-x-[-14vw] md:-top-36 md:-bottom-44 xl:inset-x-[-10vw] xl:-top-44 xl:-bottom-52">
                 <ColorBends
                     className="pointer-events-none"
@@ -60,10 +60,13 @@ function HeroSection() {
                     data-testid="hero-copy"
                     className="min-w-0 overflow-visible flex flex-col items-center text-center xl:items-start xl:text-left"
                 >
+                    <h1 className="sr-only">
+                        {HeroConstants.mainTitle} Build, Test, Deploy {HeroConstants.subTitle}
+                    </h1>
                     <div className="flex max-w-full flex-nowrap items-center justify-center gap-2 overflow-visible lg:justify-start xl:gap-3">
-                        <h1 className="shrink-0 whitespace-nowrap text-2xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
+                        <div className="shrink-0 whitespace-nowrap text-2xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
                             {HeroConstants.mainTitle}
-                        </h1>
+                        </div>
                         <GlassSurface
                             width="auto"
                             height="auto"
@@ -93,9 +96,9 @@ function HeroSection() {
                             />
                         </GlassSurface>
                     </div>
-                    <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
+                    <p className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
                         {HeroConstants.subTitle}
-                    </h1>
+                    </p>
                     <p className="mt-6 max-w-2xl text-sm tracking-tight text-zinc-400 sm:text-base 2xl:text-xl">
                         {HeroConstants.description}
                     </p>

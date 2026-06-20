@@ -23,7 +23,7 @@ const stackIcons = [
 
 function LogoLoopSection() {
   return (
-    <section id="technologies" className="w-full scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8">
+    <section id="technologies" className="nova-page-gutter w-full scroll-mt-32 py-20">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <p className="font-mono text-sm font-semibold uppercase tracking-normal text-[#c084fc]">
@@ -33,8 +33,8 @@ function LogoLoopSection() {
             Deploy apps from your favorite stack.
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-400">
-            Nova เชื่อม workflow ของ frontend, backend, static site และ service
-            runtime ให้เริ่มจาก repository แล้วไปต่อ production ได้เร็วขึ้น
+            เลือก stack ที่ทีมใช้อยู่ แล้วจัดการ frontend, backend, static site และ service
+            runtime จาก workspace เดียว โดยไม่บังคับให้เปลี่ยนเครื่องมือที่คุ้นเคย
           </p>
         </div>
 

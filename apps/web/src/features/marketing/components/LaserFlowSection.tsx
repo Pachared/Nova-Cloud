@@ -29,7 +29,7 @@ function LaserFlowSection() {
   };
 
   return (
-    <section id="laser-flow" className="w-full scroll-mt-32 px-4 pb-20 pt-0 sm:px-6 lg:px-8">
+    <section id="laser-flow" className="nova-page-gutter w-full scroll-mt-32 pb-20 pt-0">
       <div className="mx-auto w-full max-w-7xl">
         <div
           className="group relative min-h-[860px] overflow-hidden bg-transparent"

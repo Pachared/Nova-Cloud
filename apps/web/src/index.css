@@ -14,6 +14,22 @@ body {
     color: #FFFFFF;
 }
 
+.nova-page-gutter {
+    padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+    .nova-page-gutter {
+        padding-inline: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nova-page-gutter {
+        padding-inline: 2rem;
+    }
+}
+
 .nova-signal-track {
     animation: nova-signal-marquee 32s linear infinite;
     animation-delay: var(--signal-delay, 0s);
@@ -38,4 +54,62 @@ body {
         animation: none;
         transform: translateY(0);
     }
+}
+
+.nova-magic-bento {
+    isolation: isolate;
+}
+
+.nova-magic-card {
+    --magic-x: 50%;
+    --magic-y: 50%;
+    background:
+        radial-gradient(360px circle at var(--magic-x) var(--magic-y), rgba(var(--magic-color), 0.16), transparent 65%),
+        #15131c;
+    transform-style: preserve-3d;
+    transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.nova-magic-card:hover {
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32), 0 0 30px rgba(var(--magic-color), 0.16);
+}
+
+.nova-magic-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(300px circle at var(--magic-x) var(--magic-y), rgba(var(--magic-color), 0.95), transparent 62%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.nova-magic-spotlight {
+    z-index: 0;
+    opacity: var(--magic-spotlight-opacity);
+    background: radial-gradient(var(--magic-radius) circle at var(--magic-spotlight-x) var(--magic-spotlight-y), rgba(132, 0, 255, 0.13), transparent 65%);
+    transition: opacity 160ms ease;
+}
+
+.nova-magic-particle,
+.nova-magic-ripple {
+    position: absolute;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.nova-magic-particle {
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.nova-magic-ripple {
+    width: 220px;
+    height: 220px;
+    margin: -110px;
+    border-radius: 999px;
 }

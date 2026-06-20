@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { FiActivity, FiArrowUpRight, FiBox, FiCheckCircle, FiClock, FiCode, FiDatabase, FiGitBranch, FiGlobe } from "react-icons/fi";
+import { FiActivity, FiAlertCircle, FiArrowUpRight, FiBell, FiClipboard, FiClock, FiFileText, FiGlobe, FiShield, FiUserCheck } from "react-icons/fi";
 
 type Signal = {
   title: string;
@@ -10,22 +10,22 @@ type Signal = {
 
 const signalColumns: Signal[][] = [
   [
-    { title: "เชื่อม repository แล้ว", detail: "เชื่อม GitHub source พร้อมสำหรับ build อัตโนมัติ.", label: "Source", Icon: FiGitBranch },
-    { title: "สภาพแวดล้อม Preview", detail: "ทุกการเปลี่ยนแปลงมี Preview URL แยกสำหรับตรวจสอบ.", label: "Preview", Icon: FiGlobe },
-    { title: "ผ่าน health check", detail: "ตรวจ runtime เรียบร้อยก่อนรับ production traffic.", label: "Runtime", Icon: FiCheckCircle },
-    { title: "Build pipeline พร้อม", detail: "workflow เดียวจัดลำดับ build, test และ deploy.", label: "Workflow", Icon: FiActivity },
+    { title: "ระบุเจ้าของ release", detail: "เห็นผู้รับผิดชอบของแต่ละ deployment ก่อนเริ่ม rollout.", label: "Ownership", Icon: FiUserCheck },
+    { title: "สรุปการเปลี่ยนแปลง", detail: "ทีมเห็นสิ่งที่เปลี่ยนไปพร้อมบริบทของ release เดียวกัน.", label: "Changes", Icon: FiFileText },
+    { title: "ลิงก์ preview สำหรับรีวิว", detail: "แชร์ environment ที่ตรวจสอบได้ให้คนที่เกี่ยวข้องโดยตรง.", label: "Review", Icon: FiGlobe },
+    { title: "บันทึกการอนุมัติ", detail: "เก็บสถานะการอนุมัติไว้กับ release ที่ทีมกำลังติดตาม.", label: "Approval", Icon: FiShield },
   ],
   [
-    { title: "ซิงก์ environment แล้ว", detail: "Secrets และ configuration ถูกแยกตามแต่ละ service.", label: "Config", Icon: FiCode },
-    { title: "เชื่อมฐานข้อมูลแล้ว", detail: "เพิ่ม data service ไปพร้อมกับ application ของคุณ.", label: "Data", Icon: FiDatabase },
-    { title: "อยู่ในคิว deploy", detail: "เห็น release ได้ตั้งแต่ commit จน service เปิดใช้งาน.", label: "Deploy", Icon: FiClock },
-    { title: "Service runtime", detail: "Frontend, API และ worker ใช้ deployment flow เดียวกัน.", label: "Platform", Icon: FiBox },
+    { title: "แจ้งเตือนสิ่งที่ต้องดู", detail: "ส่งสัญญาณให้ทีมเมื่อ release ต้องการการตรวจสอบเพิ่มเติม.", label: "Alerts", Icon: FiBell },
+    { title: "ติดตามเหตุการณ์สำคัญ", detail: "รวมเหตุการณ์ของ release ไว้ใน timeline ที่ทีมอ่านร่วมกัน.", label: "Timeline", Icon: FiActivity },
+    { title: "บันทึกการตัดสินใจ", detail: "ย้อนดูการเปลี่ยนสถานะและเหตุผลของ release ได้ตามเวลา.", label: "Audit", Icon: FiClipboard },
+    { title: "กำหนดเวลาติดตาม", detail: "เห็นช่วงที่ release อยู่ระหว่างตรวจสอบหรือรอการดำเนินการ.", label: "Follow-up", Icon: FiClock },
   ],
   [
-    { title: "จาก branch สู่ production", detail: "เปลี่ยน repository ที่เชื่อมไว้เป็น endpoint ที่ใช้งานจริง.", label: "Release", Icon: FiGitBranch },
-    { title: "กำหนด domain แล้ว", detail: "ติดตาม address ของ preview และ production ได้ง่าย.", label: "Network", Icon: FiGlobe },
-    { title: "ติดตาม deployment ได้", detail: "ตรวจสถานะของแต่ละ service ได้ตลอดการเปลี่ยนแปลง.", label: "Observe", Icon: FiActivity },
-    { title: "Release เสร็จสมบูรณ์", detail: "ทีมได้รับสัญญาณชัดเจนเมื่อ service เปิดใช้งานแล้ว.", label: "Ready", Icon: FiCheckCircle },
+    { title: "ประวัติ release ที่ค้นหาได้", detail: "เปิดดูสิ่งที่เกิดขึ้นกับ deployment ก่อนหน้าได้ทันที.", label: "History", Icon: FiClock },
+    { title: "สรุปผลกระทบ", detail: "ให้ทีมรับรู้ว่า service ใดและใครได้รับผลจากการเปลี่ยนแปลง.", label: "Context", Icon: FiAlertCircle },
+    { title: "ติดตามสถานะร่วมกัน", detail: "ทุกคนเห็นความคืบหน้าจากหน้าข้อมูลเดียวกัน.", label: "Visibility", Icon: FiActivity },
+    { title: "ส่งมอบพร้อมหลักฐาน", detail: "ให้ข้อมูล release อยู่พร้อมสำหรับการทบทวนของทีม.", label: "Record", Icon: FiFileText },
   ],
 ];
 
@@ -49,14 +49,14 @@ function SignalCard({ signal }: { signal: Signal }) {
 
 function DeveloperSignalsSection() {
   return (
-    <section className="w-full px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="developer-signals-title">
+    <section className="nova-page-gutter w-full py-20" aria-labelledby="developer-signals-title">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <h2 id="developer-signals-title" className="text-4xl font-bold leading-tight text-white sm:text-5xl">
-            สร้างเพื่อทีมที่ส่งงานขึ้น production
+            ทุก deployment มีบริบทให้ทีมตัดสินใจ
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400">
-            Nova ทำให้สัญญาณสำคัญของทีมอยู่ใกล้ deployment workflow ตั้งแต่เชื่อม source จน service เปิดใช้งานจริง.
+            Nova รวบรวม ownership, approval, alerts และประวัติ release ไว้ในจุดที่ทีมใช้ติดตามงานร่วมกัน.
           </p>
         </div>
 

@@ -21,10 +21,15 @@ const footerGroups = [
 
 function FooterSection() {
   return (
-    <footer className="relative w-full bg-[#09080f]" aria-label="Nova Cloud footer">
-      <div className="pointer-events-none absolute inset-x-[6%] top-0 h-px bg-gradient-to-r from-transparent via-[#a855f7]/75 to-transparent" />
-      <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
-        <div className="grid gap-10 pb-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.5fr)_repeat(2,minmax(0,1fr))] lg:gap-12">
+    <footer className="relative w-full overflow-hidden bg-[#09080f]" aria-label="Nova Cloud footer">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-36" aria-hidden="true">
+        <div className="absolute inset-x-[14%] top-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/55 to-transparent" />
+        <div className="absolute left-1/2 top-0 h-28 w-[min(62rem,84vw)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(192,132,252,0.3),rgba(168,85,247,0.12)_42%,rgba(76,29,149,0.06)_66%,transparent_88%)] blur-xl" />
+        <div className="absolute left-1/2 top-0 h-20 w-[min(42rem,62vw)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(240,200,255,0.34),rgba(192,132,252,0.16)_46%,rgba(126,34,206,0.07)_70%,transparent_90%)] blur-lg" />
+        <div className="absolute left-1/2 top-10 h-24 w-[min(56rem,76vw)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(147,51,234,0.08),rgba(88,28,135,0.04)_52%,transparent_84%)] blur-3xl" />
+      </div>
+      <div className="nova-page-gutter mx-auto max-w-7xl pt-10">
+        <div className="grid gap-10 pb-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(11rem,0.55fr)_minmax(11rem,0.55fr)] lg:gap-12">
           <div className="max-w-sm">
             <a href="#home" className="inline-flex items-center gap-2 text-lg font-bold text-white">
               <img src="/Nova.svg" alt="" className="h-8 w-8" />
@@ -40,7 +45,7 @@ function FooterSection() {
           </div>
 
           {footerGroups.map((group) => (
-            <div key={group.title}>
+            <div key={group.title} className="lg:justify-self-end">
               <h3 className="text-sm font-semibold text-white">{group.title}</h3>
               <ul className="mt-4 space-y-3">
                 {group.links.map(([label, href]) => (
