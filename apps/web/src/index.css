@@ -13,3 +13,29 @@ body {
     background-color: #000000;
     color: #FFFFFF;
 }
+
+.nova-signal-track {
+    animation: nova-signal-marquee 32s linear infinite;
+    animation-delay: var(--signal-delay, 0s);
+    backface-visibility: hidden;
+    contain: paint;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+.nova-signal-track-reverse {
+    animation-direction: reverse;
+}
+
+@keyframes nova-signal-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    /* Each duplicated card sequence is separated by Tailwind's 1rem space-y gap. */
+    to { transform: translate3d(0, calc(-50% - 0.5rem), 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nova-signal-track {
+        animation: none;
+        transform: translateY(0);
+    }
+}

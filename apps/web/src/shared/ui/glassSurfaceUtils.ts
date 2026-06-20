@@ -41,18 +41,17 @@ type DisplacementMapOptions = {
 };
 
 export function useDarkMode() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const frame = window.requestAnimationFrame(() => setIsDark(mediaQuery.matches));
     const handler = (event: MediaQueryListEvent) => setIsDark(event.matches);
     mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      mediaQuery.removeEventListener("change", handler);
+    };
   }, []);
 
   return isDark;
@@ -105,9 +104,7 @@ export function createLiteGlassStyles(
   isDarkMode: boolean,
   saturation: number,
 ) {
-  const backdropFilter = supportsCssBackdropFilter()
-    ? `blur(12px) saturate(${saturation}) brightness(1.08)`
-    : undefined;
+  const backdropFilter = `blur(12px) saturate(${saturation}) brightness(1.08)`;
 
   return {
     ...baseStyles,

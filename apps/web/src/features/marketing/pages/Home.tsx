@@ -5,12 +5,14 @@ import { useState } from "react";
 import Navbar from "@/shared/navigation/Navbar";
 import HeroSection from "../components/HeroSection";
 import LogoLoopSection from "../components/LogoLoopSection";
+import DeveloperSignalsSection from "../components/DeveloperSignalsSection";
 import Login from "@/features/auth/components/Login";
 import WorkflowSection from "../components/WorkflowSection";
 import CapabilitiesSection from "../components/CapabilitiesSection";
 import NewProjectPreviewSection from "../components/NewProjectPreviewSection";
 import LaserFlowSection from "../components/LaserFlowSection";
 import FinalCtaSection from "../components/FinalCtaSection";
+import FooterSection from "../components/FooterSection";
 
 function Home() {
     const [showLogin, setShowLogin] = useState(false);
@@ -28,8 +30,10 @@ function Home() {
                 <WorkflowSection />
                 <CapabilitiesSection />
                 <LogoLoopSection />
+                <DeveloperSignalsSection />
                 <FinalCtaSection />
             </div>
+            <FooterSection />
 
             {showLogin && (
                 <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">

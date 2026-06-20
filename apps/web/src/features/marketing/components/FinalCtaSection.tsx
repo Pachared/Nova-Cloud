@@ -18,10 +18,6 @@ function FinalCtaSection() {
           </a>
         </div>
       </div>
-      <footer className="mx-auto flex max-w-7xl flex-col gap-3 py-8 text-sm text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
-        <span>Nova Cloud</span>
-        <span>Deployment platform for modern teams</span>
-      </footer>
     </section>
   );
 }

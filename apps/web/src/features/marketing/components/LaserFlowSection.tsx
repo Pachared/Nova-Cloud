@@ -123,7 +123,7 @@ function LaserFlowSection() {
               </div>
             </div>
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-50 h-20 bg-gradient-to-t from-black via-black/70 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-gradient-to-t from-black via-black/70 to-transparent" />
         </div>
       </div>
     </section>
