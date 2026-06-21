@@ -2,40 +2,42 @@
 
 import React from "react";
 import GlassSurface from "@/shared/ui/GlassSurface";
+import StaggeredMenu from "./StaggeredMenu";
 
 type NavbarProps = {
   onLoginClick: () => void;
 };
 
 const navLinks = [
-  { href: "#templates", label: "Templates" },
-  { href: "#workflow", label: "Workflow" },
-  { href: "#features", label: "ฟีเจอร์" },
-  { href: "#technologies", label: "Technologies" },
+  { ariaLabel: "Go to templates", href: "#templates", label: "Templates" },
+  { ariaLabel: "Go to workflow", href: "#workflow", label: "Workflow" },
+  { ariaLabel: "Go to features", href: "#features", label: "ฟีเจอร์" },
+  { ariaLabel: "Go to technologies", href: "#technologies", label: "Technologies" },
 ];
 
 function Navbar({ onLoginClick }: NavbarProps) {
   return (
-    <nav
-      className="nova-page-gutter fixed inset-x-0 top-3 z-50 sm:top-4"
-      aria-label="Primary navigation"
-    >
-      <GlassSurface
-        width="100%"
-        height="auto"
-        borderRadius={16}
-        backgroundOpacity={0.05}
-        saturation={1.6}
-        enableSvgFilter
-        contentClassName="grid w-full grid-cols-[auto_auto] items-center gap-x-4 gap-y-3 px-3 py-2.5 sm:px-4 lg:grid-cols-[minmax(150px,1fr)_auto_minmax(150px,1fr)] lg:gap-x-8 lg:px-5"
-        className="mx-auto w-full max-w-7xl rounded-2xl"
+    <>
+      <nav
+        className="nova-page-gutter fixed inset-x-0 top-3 z-50 hidden sm:top-4 xl:block"
+        aria-label="Primary navigation"
       >
-        <button
-          type="button"
-          onClick={() => window.location.assign("/")}
-          className="group flex min-w-0 cursor-pointer items-center gap-2 justify-self-start rounded-2xl pr-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a855f7]/70"
-          aria-label="Go to Nova home"
+        <GlassSurface
+          width="100%"
+          height="auto"
+          borderRadius={16}
+          backgroundOpacity={0.05}
+          saturation={1.6}
+          enableSvgFilter
+          contentClassName="grid w-full grid-cols-[auto_auto] items-center gap-x-4 gap-y-3 px-3 py-2.5 sm:px-4 lg:grid-cols-[minmax(150px,1fr)_auto_minmax(150px,1fr)] lg:gap-x-8 lg:px-5"
+          className="mx-auto w-full max-w-7xl rounded-2xl"
         >
+          <button
+            type="button"
+            onClick={() => window.location.assign("/")}
+            className="group flex min-w-0 cursor-pointer items-center gap-2 justify-self-start rounded-2xl pr-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a855f7]/70"
+            aria-label="Go to Nova home"
+          >
           <img
             src="/Nova.svg"
             alt="Nova Logo"
@@ -44,8 +46,8 @@ function Navbar({ onLoginClick }: NavbarProps) {
           <span className="truncate text-base font-bold text-white sm:text-lg">
             Nova
           </span>
-        </button>
-        <div className="order-3 col-span-2 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-2xl bg-white/5 p-1 lg:order-none lg:col-span-1 lg:w-auto lg:justify-self-center lg:overflow-visible lg:bg-transparent lg:p-0">
+          </button>
+          <div className="order-3 col-span-2 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-2xl bg-white/5 p-1 lg:order-none lg:col-span-1 lg:w-auto lg:justify-self-center lg:overflow-visible lg:bg-transparent lg:p-0">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -55,16 +57,31 @@ function Navbar({ onLoginClick }: NavbarProps) {
               {link.label}
             </a>
           ))}
-        </div>
-        <button
+          </div>
+          <button
           type="button"
           onClick={onLoginClick}
           className="shrink-0 cursor-pointer justify-self-end rounded-2xl bg-white px-4 py-2.5 text-xs font-medium tracking-tight text-black shadow-lg shadow-black/20 transition-all duration-300 hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a855f7]/70 sm:px-5 sm:text-sm md:px-6 md:text-base"
         >
           เข้าสู่ระบบ
-        </button>
-      </GlassSurface>
-    </nav>
+          </button>
+        </GlassSurface>
+      </nav>
+      <StaggeredMenu
+        position="right"
+        colors={["#B497CF", "#5227FF"]}
+        items={navLinks}
+        socialItems={[{ label: "GitHub", link: "https://github.com/Pachared/Nova-Cloud" }]}
+        displaySocials
+        displayItemNumbering
+        menuButtonColor="#fff"
+        openMenuButtonColor="#fff"
+        changeMenuColorOnOpen
+        accentColor="#5227FF"
+        closeOnClickAway
+        onLoginClick={onLoginClick}
+      />
+    </>
   );
 }
 
