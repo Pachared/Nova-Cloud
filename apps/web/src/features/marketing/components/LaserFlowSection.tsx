@@ -33,7 +33,7 @@ function LaserFlowSection() {
     <section id="laser-flow" className="nova-page-gutter w-full scroll-mt-32 pb-20 pt-0">
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className="group relative min-h-[740px] overflow-hidden bg-transparent sm:min-h-[860px]"
+          className="group relative min-h-[900px] overflow-hidden bg-transparent sm:min-h-[860px]"
           onPointerMove={moveReveal}
           onPointerLeave={hideReveal}
         >
@@ -46,13 +46,13 @@ function LaserFlowSection() {
               maskImage: "radial-gradient(circle at var(--mx) var(--my), white 0, rgba(255,255,255,.85) 90px, rgba(255,255,255,.35) 170px, transparent 270px)",
             } as React.CSSProperties}
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[700px] bg-gradient-to-b from-transparent via-[#100d17]/15 to-[#100d17]/75 sm:h-[860px]" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-[680px] overflow-hidden sm:h-[780px]">
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[620px] bg-gradient-to-b from-transparent via-[#100d17]/15 to-[#100d17]/75 sm:h-[860px]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-[620px] overflow-hidden sm:h-[780px]">
             <div className="absolute left-1/2 top-0 h-[300px] w-4 -translate-x-1/2 bg-gradient-to-b from-transparent via-[#c084fc]/55 to-white/90 blur-md sm:h-[390px] sm:w-5" />
-            <div className="absolute left-[6%] right-[6%] top-[298px] h-1 rounded-full bg-gradient-to-r from-transparent via-[#f0c7ff] to-transparent blur-[2px] sm:left-[8%] sm:right-[8%] sm:top-[388px]" />
-            <div className="absolute left-1/2 top-[244px] h-28 w-[18rem] -translate-x-1/2 rounded-full bg-[#a855f7]/25 blur-3xl sm:top-[322px] sm:h-36 sm:w-[28rem]" />
+            <div className="absolute left-[6%] right-[6%] top-[300px] h-1 rounded-full bg-gradient-to-r from-transparent via-[#f0c7ff] to-transparent blur-[2px] sm:left-[8%] sm:right-[8%] sm:top-[388px]" />
+            <div className="absolute left-1/2 top-[246px] h-28 w-[18rem] -translate-x-1/2 rounded-full bg-[#a855f7]/25 blur-3xl sm:top-[322px] sm:h-36 sm:w-[28rem]" />
           </div>
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-40 h-[680px] overflow-hidden opacity-100 mix-blend-screen sm:h-[780px]">
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-40 h-[620px] overflow-hidden opacity-100 mix-blend-screen sm:h-[780px]">
             <LaserFlow
               color="#c084fc"
               horizontalBeamOffset={0}

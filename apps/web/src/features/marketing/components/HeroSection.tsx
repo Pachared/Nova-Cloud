@@ -30,6 +30,10 @@ function HeroSection() {
             output: 'Deployment ready in 1m 12s',
         },
     ];
+    const heroTerminal = {
+        command: '$ nova deploy --env production',
+        output: 'Deployment ready in 1m 12s',
+    };
 
     return (
         <div className="nova-page-gutter relative w-full overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24 2xl:py-32">
@@ -126,11 +130,11 @@ function HeroSection() {
                                 Ready
                             </div>
                         </div>
-                        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                        <div className="mt-6 grid grid-cols-3 gap-2 sm:gap-3">
                             {previewSteps.map((step, index) => (
                                 <div
                                     key={step.label}
-                                    className={`rounded-2xl px-3 py-3 text-xs font-medium transition-all duration-500 ${
+                                    className={`min-w-0 rounded-2xl px-2 py-3 text-[0.7rem] font-medium transition-all duration-500 sm:px-3 sm:text-xs ${
                                         activeStep === index
                                             ? 'bg-[#c084fc] text-black shadow-xl shadow-[#a855f7]/20'
                                             : 'bg-white/[0.045] text-zinc-400'
@@ -140,28 +144,27 @@ function HeroSection() {
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-[1fr_auto]">
-                            <div className="flex items-center gap-3 rounded-2xl bg-white/[0.055] p-3">
-                                <FiGitBranch className="text-[#a855f7]" aria-hidden="true" />
-                                <span className="text-zinc-300">GitHub connected</span>
+                        <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto] gap-2 text-xs sm:gap-3 sm:text-sm">
+                            <div className="flex min-w-0 items-center gap-2 rounded-2xl bg-white/[0.055] p-3 sm:gap-3">
+                                <FiGitBranch className="shrink-0 text-[#a855f7]" aria-hidden="true" />
+                                <span className="truncate text-zinc-300">GitHub connected</span>
                             </div>
-                            <div className="flex items-center gap-2 rounded-2xl bg-white/[0.045] px-3 py-3 text-xs text-zinc-400">
-                                <FiGlobe className="text-[#c084fc]" aria-hidden="true" />
+                            <div className="flex items-center gap-2 rounded-2xl bg-white/[0.045] px-3 py-3 text-zinc-400">
+                                <FiGlobe className="shrink-0 text-[#c084fc]" aria-hidden="true" />
                                 us-east
                             </div>
                         </div>
-                        <div className="mt-3 overflow-hidden rounded-2xl bg-[#030308] shadow-inner shadow-black/70">
-                            <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
-                                <span className="h-2 w-2 rounded-full bg-red-400" />
-                                <span className="h-2 w-2 rounded-full bg-yellow-300" />
-                                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                        <div className="mt-4 overflow-hidden rounded-2xl bg-[#030308] shadow-inner shadow-black/70">
+                            <div className="flex items-center gap-3 border-b border-white/[0.08] px-4 py-3.5 sm:px-5">
+                                <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                                <span className="h-3 w-3 rounded-full bg-[#ffda2e]" />
+                                <span className="h-3 w-3 rounded-full bg-[#28c840]" />
                             </div>
-                            <div className="p-4 font-mono text-xs leading-6 text-zinc-400">
-                                <p className="mb-3 text-[#c084fc]">&gt;_</p>
+                            <div className="min-h-[210px] p-5 font-mono text-[clamp(0.82rem,2.8vw,1.08rem)] leading-7 text-zinc-400 sm:min-h-[230px] sm:p-6">
+                                <p className="mb-8 text-[#c084fc]">&gt;_</p>
                                 <TerminalTyping
-                                    key={activeStep}
-                                    command={previewSteps[activeStep].command}
-                                    output={previewSteps[activeStep].output}
+                                    command={heroTerminal.command}
+                                    output={heroTerminal.output}
                                     className="text-zinc-400 [&>p:last-child]:text-[#c084fc]"
                                 />
                             </div>
