@@ -2,18 +2,12 @@
 
 import React from "react";
 import GlassSurface from "@/shared/ui/GlassSurface";
+import { navLinks } from "./constants/NavLinks";
 import StaggeredMenu from "./StaggeredMenu";
 
 type NavbarProps = {
   onLoginClick: () => void;
 };
-
-const navLinks = [
-  { ariaLabel: "Go to templates", href: "#templates", label: "Templates" },
-  { ariaLabel: "Go to workflow", href: "#workflow", label: "Workflow" },
-  { ariaLabel: "Go to features", href: "#features", label: "ฟีเจอร์" },
-  { ariaLabel: "Go to technologies", href: "#technologies", label: "Technologies" },
-];
 
 function Navbar({ onLoginClick }: NavbarProps) {
   return (

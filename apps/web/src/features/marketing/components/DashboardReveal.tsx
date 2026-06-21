@@ -1,7 +1,5 @@
 import type { CSSProperties, RefObject } from "react";
-
-const metrics = [["Uptime", "99.99%"], ["Latency", "42ms"], ["Requests", "1.2M"], ["Errors", "0.02%"]] as const;
-const trafficBars = [34, 52, 44, 70, 58, 82, 64, 90, 74, 96, 84, 100];
+import { dashboardMetrics, dashboardNavigationItems, dashboardTrafficBars } from "../constants/DashboardRevealConstants";
 
 type DashboardRevealProps = {
   revealRef: RefObject<HTMLDivElement | null>;
@@ -15,7 +13,7 @@ function DashboardReveal({ revealRef, style }: DashboardRevealProps) {
         <aside className="border-r border-white/[0.07] bg-white/[0.025] p-5">
           <div className="text-sm font-semibold">Nova Cloud</div>
           <div className="mt-8 space-y-3 text-xs text-zinc-500">
-            {["Overview", "Deployments", "Services", "Domains", "Logs"].map((item, index) => (
+            {dashboardNavigationItems.map((item, index) => (
               <div key={item} className={`rounded-xl px-3 py-2 ${index === 0 ? "bg-[#a855f7]/15 text-[#e9d5ff]" : ""}`}>{item}</div>
             ))}
           </div>
@@ -26,13 +24,13 @@ function DashboardReveal({ revealRef, style }: DashboardRevealProps) {
             <span className="rounded-full bg-emerald-400/12 px-3 py-1 text-xs font-semibold text-emerald-200">Healthy</span>
           </div>
           <div className="mt-6 grid grid-cols-4 gap-3">
-            {metrics.map(([label, value]) => <div key={label} className="rounded-2xl bg-white/[0.045] p-4"><p className="text-[0.68rem] uppercase tracking-[0.14em] text-zinc-600">{label}</p><p className="mt-3 text-2xl font-semibold">{value}</p></div>)}
+            {dashboardMetrics.map(([label, value]) => <div key={label} className="rounded-2xl bg-white/[0.045] p-4"><p className="text-[0.68rem] uppercase tracking-[0.14em] text-zinc-600">{label}</p><p className="mt-3 text-2xl font-semibold">{value}</p></div>)}
           </div>
           <div className="mt-4 grid grid-cols-[1.2fr_0.8fr] gap-4">
             <div className="rounded-2xl bg-white/[0.045] p-4">
               <div className="flex items-center justify-between text-xs text-zinc-500"><span>Traffic</span><span className="text-[#c084fc]">live</span></div>
               <div className="mt-8 flex h-28 items-end gap-2">
-                {trafficBars.map((height, index) => <span key={index} className="flex-1 rounded-t bg-gradient-to-t from-[#6366f1] to-[#c084fc]" style={{ height: `${height}%` }} />)}
+                {dashboardTrafficBars.map((height, index) => <span key={index} className="flex-1 rounded-t bg-gradient-to-t from-[#6366f1] to-[#c084fc]" style={{ height: `${height}%` }} />)}
               </div>
             </div>
             <div className="rounded-2xl bg-white/[0.045] p-4">

@@ -6,7 +6,7 @@ import RotatingText from '../style/RotatingText'
 import ColorBends from '../style/ColorBends'
 import { FiCheckCircle, FiGitBranch, FiGlobe } from 'react-icons/fi'
 
-import { HeroConstants } from '../constants/constants'
+import { HeroConstants } from '../constants/HeroConstants'
 import GlassSurface from '@/shared/ui/GlassSurface'
 import TerminalTyping from './TerminalTyping'
 

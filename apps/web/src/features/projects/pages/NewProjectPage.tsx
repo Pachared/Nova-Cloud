@@ -1,41 +1,10 @@
 import {
   FiArrowLeft,
-  FiBox,
   FiChevronRight,
-  FiCode,
-  FiDatabase,
-  FiGithub,
-  FiGlobe,
-  FiPlus,
   FiSearch,
-  FiServer,
 } from "react-icons/fi";
+import { projectActions, serviceOptions } from "../constants/NewProjectConstants";
 import GlassSurface from "@/shared/ui/GlassSurface";
-
-const projectActions = [
-  {
-    title: "Deploy from GitHub repo",
-    description: "Connect a repository and let Nova detect the framework.",
-    icon: FiGithub,
-  },
-  {
-    title: "Deploy a template",
-    description: "Start from a prepared app, API, or full-stack template.",
-    icon: FiBox,
-  },
-  {
-    title: "Empty project",
-    description: "Create a blank workspace and add services manually.",
-    icon: FiPlus,
-  },
-];
-
-const serviceOptions = [
-  { label: "PostgreSQL", icon: FiDatabase },
-  { label: "Redis", icon: FiServer },
-  { label: "Static site", icon: FiGlobe },
-  { label: "API service", icon: FiCode },
-];
 
 function NewProjectPage() {
   return (

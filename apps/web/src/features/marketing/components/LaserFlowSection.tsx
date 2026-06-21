@@ -1,19 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { FiCheckCircle, FiDatabase, FiGitBranch, FiGithub, FiGlobe, FiServer } from "react-icons/fi";
+import { laserProjectResults } from "../constants/LaserFlowConstants";
 import LaserFlow from "../style/LaserFlow";
 import DashboardReveal from "./DashboardReveal";
 import TerminalTyping from "./TerminalTyping";
-
-const projectResults = [
-  ["Repository connected", "GitHub import พร้อม branch production", FiGithub],
-  ["Environment synced", "API_URL, DATABASE_URL และ secrets ถูกผูกแล้ว", FiGitBranch],
-  ["Database ready", "PostgreSQL พร้อม migration เริ่มต้น", FiDatabase],
-  ["Runtime allocated", "Service runtime พร้อมรับ deploy", FiServer],
-  ["Preview domain", "nova-cloud-web.preview.app พร้อมใช้งาน", FiGlobe],
-  ["Deployment live", "Build ผ่านและเปิด production traffic", FiCheckCircle],
-] as const;
 function LaserFlowSection() {
   const revealRef = useRef<HTMLDivElement | null>(null);
 
@@ -96,7 +87,7 @@ function LaserFlowSection() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
-                {projectResults.map(([title, description, Icon]) => (
+                {laserProjectResults.map(([title, description, Icon]) => (
                   <div key={title} className="group/result cursor-default rounded-2xl bg-white/[0.045] p-2.5 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.08] hover:shadow-[0_14px_36px_rgba(168,85,247,0.12)] sm:p-3">
                     <div className="flex items-start gap-2 sm:gap-3">
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-black/40 text-[#c084fc] transition group-hover/result:bg-[#a855f7]/20 group-hover/result:text-[#e9d5ff] group-hover/result:shadow-[0_0_28px_rgba(168,85,247,0.48)] sm:h-9 sm:w-9 sm:rounded-2xl">
