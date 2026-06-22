@@ -1,12 +1,10 @@
 import {
   FiBox,
   FiCode,
-  FiCpu,
   FiDatabase,
   FiGithub,
   FiGlobe,
   FiPlus,
-  FiStar,
   FiServer,
   FiUploadCloud,
   FiZap,
@@ -17,72 +15,41 @@ export type ProjectActionId =
   | "database"
   | "template"
   | "docker"
-  | "function"
-  | "bucket"
   | "empty";
-
-export const commandSuggestions = [
-  {
-    id: "todo-db",
-    title: "Create to-do list function with a database",
-    actionId: "function",
-    icon: FiStar,
-  },
-  {
-    id: "infra-pack",
-    title: "Deploy Redis, Postgres, and a Bucket",
-    actionId: "database",
-    icon: FiStar,
-  },
-] as const;
 
 export const projectActions = [
   {
     id: "github",
     title: "GitHub Repository",
-    description: "Import repository แล้ว deploy อัตโนมัติ",
+    description: "นำ source code จาก GitHub มา build และ deploy",
     icon: FiGithub,
     meta: "Source",
   },
   {
     id: "database",
     title: "Database",
-    description: "เพิ่ม PostgreSQL หรือ Redis พร้อม env binding",
+    description: "สร้าง PostgreSQL หรือ Redis เพื่อเชื่อมต่อกับแอป",
     icon: FiDatabase,
     meta: "Data",
   },
   {
     id: "template",
     title: "Template",
-    description: "เลือก starter สำหรับ frontend, API หรือ full-stack",
+    description: "เริ่มจาก starter ที่เตรียม workflow ไว้ให้",
     icon: FiBox,
     meta: "Template",
   },
   {
     id: "docker",
     title: "Docker Image",
-    description: "Deploy container image จาก registry",
+    description: "deploy image ที่ build มาแล้วจาก container registry",
     icon: FiUploadCloud,
     meta: "Image",
   },
   {
-    id: "function",
-    title: "Function",
-    description: "สร้าง serverless function พร้อม runtime",
-    icon: FiCode,
-    meta: "Compute",
-  },
-  {
-    id: "bucket",
-    title: "Bucket",
-    description: "สร้าง object storage สำหรับ assets",
-    icon: FiCpu,
-    meta: "Storage",
-  },
-  {
     id: "empty",
     title: "Empty Project",
-    description: "เริ่ม workspace เปล่าแล้วค่อยเพิ่ม service",
+    description: "เริ่ม workspace เปล่า แล้วประกอบ service ตามต้องการ",
     icon: FiPlus,
     meta: "Blank",
   },

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import {
-  commandSuggestions,
   projectActions,
   recentRepositories,
   regionOptions,
@@ -83,14 +82,6 @@ export function useNewProjectFlow() {
     [query],
   );
 
-  const filteredSuggestions = useMemo(
-    () =>
-      commandSuggestions.filter((suggestion) =>
-        matchesQuery([suggestion.title], query),
-      ),
-    [query],
-  );
-
   const selectedSource = useMemo(() => {
     const repo = recentRepositories.find((item) => item.id === selectedRepo);
     const template = templateOptions.find((item) => item.id === selectedTemplate);
@@ -154,7 +145,6 @@ export function useNewProjectFlow() {
     filteredActions,
     filteredRepos,
     filteredServices,
-    filteredSuggestions,
     filteredTemplates,
     projectName,
     query,
