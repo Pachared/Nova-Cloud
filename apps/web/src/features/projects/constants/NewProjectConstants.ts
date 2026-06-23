@@ -28,7 +28,7 @@ export const projectActions = [
   {
     id: "database",
     title: "Database",
-    description: "สร้าง PostgreSQL หรือ Redis เพื่อเชื่อมต่อกับแอป",
+    description: "เพิ่ม service สำหรับจัดเก็บข้อมูลให้กับโปรเจกต์",
     icon: FiDatabase,
     meta: "Data",
   },
@@ -60,6 +60,13 @@ export const serviceOptions = [
   { id: "redis", label: "Redis", icon: FiServer },
   { id: "static", label: "Static site", icon: FiGlobe },
   { id: "api", label: "API service", icon: FiCode },
+] as const;
+
+export const databaseOptions = [
+  { id: "postgres", name: "PostgreSQL", description: "Relational database for production applications", icon: FiDatabase },
+  { id: "redis", name: "Redis", description: "In-memory data store for caching and queues", icon: FiServer },
+  { id: "mongodb", name: "MongoDB", description: "Document database for flexible application data", icon: FiGlobe },
+  { id: "mysql", name: "MySQL", description: "Relational database for familiar SQL workflows", icon: FiCode },
 ] as const;
 
 export const recentRepositories = [
