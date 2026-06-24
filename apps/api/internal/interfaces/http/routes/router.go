@@ -20,6 +20,7 @@ func SetupRoutes(r *gin.Engine) {
 	auth := r.Group("/auth")
 	{
 		auth.POST("/login", controllers.Login)                                             // POST /auth/login // เข้าสู่ระบบ รับ token
+		auth.POST("/github", controllers.GitHubLogin)                                      // POST /auth/github // แลก GitHub OAuth code เป็น token
 		auth.GET("/profile", middleware.JWTAuthMiddleware(), controllers.Profile)          // GET /auth/profile // ดูข้อมูลโปรไฟล์ผู้ใช้ (ต้อง login)
 		auth.PUT("/profile", middleware.JWTAuthMiddleware(), controllers.UpdateOwnProfile) // PUT /auth/profile // อัปเดตข้อมูลโปรไฟล์ผู้ใช้ (ต้อง login)
 		auth.POST("/refresh", middleware.JWTAuthMiddleware(), controllers.RefreshToken)    // POST /auth/refresh // รีเฟรช access token (ต้อง login)

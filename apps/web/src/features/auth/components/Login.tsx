@@ -3,10 +3,8 @@ import React from 'react'
 import { LoginText } from '@/features/auth/constants/LoginText';
 
 function Login() {
-
-    const clientId = "YOUR_GITHUB_CLIENT_ID";
-    const redirectUri = process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URI || "http://localhost:3000";
-    const githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
+    const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
+    const githubUrl = clientId ? "/api/auth/github" : "#";
 
     return (
         <div className="flex flex-col items-center rounded-2xl bg-black px-25 py-20">
@@ -21,7 +19,11 @@ function Login() {
             <h2 className="text-md font-medium mb-10">
                 {LoginText.instructionMessage}
             </h2>
-            <a href={githubUrl} className="w-full cursor-pointer rounded-2xl bg-gray-500 p-2 text-center text-white transition hover:bg-gray-800">
+            <a
+                href={githubUrl}
+                aria-disabled={!clientId}
+                className="w-full cursor-pointer rounded-2xl bg-gray-500 p-2 text-center text-white transition hover:bg-gray-800 aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            >
                 {LoginText.githubButtonText}
             </a>
         </div>

@@ -25,13 +25,13 @@ func main() {
 	config.StartRedisMonitor(10 * time.Second)
 
 	if config.RDB == nil {
-		log.Panicln("Redis = FAIL (Client nil)")
+		log.Println("Redis = UNAVAILABLE, continuing with database fallback")
 	} else {
 		ctx, cancel := context.WithTimeout(config.Ctx, 2*time.Second)
 		defer cancel()
 
 		if _, err := config.RDB.Ping(ctx).Result(); err != nil {
-			log.Panicln("Redis = FAIL:", err)
+			log.Println("Redis = UNAVAILABLE, continuing with database fallback:", err)
 		} else {
 			log.Println("Redis = CONNECTED")
 		}

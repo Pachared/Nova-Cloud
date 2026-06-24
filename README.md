@@ -36,7 +36,7 @@ npm run dev:api
 Run local services:
 
 ```bash
-docker compose up mysql redis
+docker compose up postgres redis
 ```
 
 ## Deployment

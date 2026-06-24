@@ -30,6 +30,8 @@ function LogoLoopSection() {
                 <img
                   src={item.src}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="relative z-10 h-7 w-7 object-contain transition duration-300 group-hover:scale-110 sm:h-9 sm:w-9 lg:h-10 lg:w-10"
                 />
               </a>

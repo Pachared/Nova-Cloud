@@ -9,8 +9,8 @@ func CORSMiddleware() gin.HandlerFunc {
 		origin := c.Request.Header.Get("Origin")
 
 		allowedOrigins := map[string]bool{
-			"https://novacloud.vercel.app/": true,
-			"http://localhost:5173":         true,
+			"https://novacloud.vercel.app": true,
+			"http://localhost:3000":        true,
 		}
 
 		if allowedOrigins[origin] {

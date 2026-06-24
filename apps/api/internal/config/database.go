@@ -6,8 +6,9 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"nova-api/internal/domain/models"
 )
 
 var DB *gorm.DB
@@ -17,18 +18,32 @@ func ConnectDatabase() {
 		log.Println("ไม่พบไฟล์ .env กำลังใช้ค่าจาก environment ของระบบแทน")
 	}
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		os.Getenv("MYSQLUSER"),
-		os.Getenv("MYSQLPASSWORD"),
-		os.Getenv("MYSQLHOST"),
-		os.Getenv("MYSQLPORT"),
-		os.Getenv("MYSQLDATABASE"),
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=UTC",
+		os.Getenv("POSTGRES_HOST"),
+		os.Getenv("POSTGRES_USER"),
+		os.Getenv("POSTGRES_PASSWORD"),
+		os.Getenv("POSTGRES_DB"),
+		os.Getenv("POSTGRES_PORT"),
+		postgresSSLMode(),
 	)
 
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("เชื่อมต่อฐานข้อมูลไม่สำเร็จ:", err)
 	}
 
 	DB = db
+	if err := DB.AutoMigrate(&models.Role{}, &models.User{}, &models.RefreshToken{}); err != nil {
+		log.Fatal("ไม่สามารถ migrate PostgreSQL schema ได้:", err)
+	}
+	if err := DB.FirstOrCreate(&models.Role{}, models.Role{Name: "member"}).Error; err != nil {
+		log.Fatal("ไม่สามารถสร้าง default role ได้:", err)
+	}
+}
+
+func postgresSSLMode() string {
+	if value := os.Getenv("POSTGRES_SSLMODE"); value != "" {
+		return value
+	}
+	return "disable"
 }

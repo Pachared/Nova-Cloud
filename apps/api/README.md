@@ -1,6 +1,6 @@
 # Nova API
 
-Go API for Nova using Gin, Gorm, MySQL, Redis, and JWT authentication.
+Go API for Nova using Gin, Gorm, PostgreSQL, Redis, JWT, and GitHub OAuth authentication.
 
 ## Commands
 
