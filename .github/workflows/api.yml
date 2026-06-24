@@ -22,5 +22,13 @@ jobs:
         with:
           go-version-file: apps/api/go.mod
           cache-dependency-path: apps/api/go.sum
-      - run: go test ./...
-      - run: go build ./...
+      - name: Run tests
+        run: go test ./...
+        env:
+          ACCESS_TOKEN_SECRET: ci-test-access-secret
+          REFRESH_TOKEN_SECRET: ci-test-refresh-secret
+      - name: Build API
+        run: go build ./...
+        env:
+          ACCESS_TOKEN_SECRET: ci-test-access-secret
+          REFRESH_TOKEN_SECRET: ci-test-refresh-secret
