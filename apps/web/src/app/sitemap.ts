@@ -1,10 +1,11 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+import type { MetadataRoute } from "next";
+import { canIndexSite, site } from "@/shared/seo/site";
 
-export default function sitemap() {
+export default function sitemap(): MetadataRoute.Sitemap {
+  if (!canIndexSite) return [];
   return [
     {
-      url: siteUrl,
-      lastModified: new Date(),
+      url: site.url,
       changeFrequency: "weekly",
       priority: 1,
     },

@@ -3,9 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "workspaces": [
-    "apps/web",
-    "packages/shared-types",
-    "packages/shared-utils"
+    "apps/web"
   ],
   "scripts": {
     "dev:web": "npm --workspace @nova/web run dev",

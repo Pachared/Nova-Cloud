@@ -1,58 +1,17 @@
-import { FiSearch, FiServer } from "react-icons/fi";
-import { createOptions } from "../constants/NewProjectPreviewConstants";
-
 function NewProjectPreviewSection() {
   return (
-    <section id="templates" className="nova-page-gutter scroll-mt-32 pb-0 pt-16 sm:pt-20">
-      <div className="relative mx-auto grid max-w-7xl gap-8 pb-8 sm:gap-10 sm:pb-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/70 to-transparent" />
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            เริ่มโปรเจกต์ใหม่แบบเดียวกับเครื่องมือ production
-          </h2>
-          <p className="mt-4 text-sm leading-6 text-zinc-400 sm:text-base">
-            หน้า New Project ของ Nova ถูกออกแบบให้ต่อยอดจาก GitHub, template,
-            database หรือ empty service ได้โดยตรง
-          </p>
-        </div>
-
-        <div className="relative overflow-hidden rounded-3xl bg-[#08080d]/90 p-4 shadow-2xl shadow-black/40 sm:p-5">
-          <div className="grid gap-3 lg:grid-cols-[190px_1fr]">
-            <div className="rounded-2xl bg-white/[0.055] p-4">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-white">New project</p>
-                  <p className="mt-1 text-xs text-zinc-500">Personal workspace</p>
-                </div>
-                <FiServer className="shrink-0 text-[#a855f7]" aria-hidden="true" />
-              </div>
-              <div className="mt-5 h-1.5 overflow-hidden rounded-2xl bg-white/[0.06]">
-                <div className="h-full w-2/3 rounded-2xl bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#c084fc]" />
-              </div>
-            </div>
-            <div className="flex min-w-0 items-center gap-3 rounded-2xl bg-white/[0.055] px-4 py-3 text-sm text-zinc-500">
-              <FiSearch className="shrink-0" aria-hidden="true" />
-              <span className="min-w-0 truncate">Search repositories, templates, or services</span>
-            </div>
-          </div>
-          <div className="mt-3 grid gap-3 sm:grid-cols-2">
-            {createOptions.map(([id, title, description, Icon]) => (
-              <button
-                key={title}
-                data-project-option={id}
-                className="group flex min-h-36 cursor-pointer flex-col justify-between rounded-2xl bg-white/[0.045] p-4 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.08] hover:shadow-[0_14px_34px_rgba(168,85,247,0.14)]"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/35 text-zinc-300 transition group-hover:text-[#c084fc] group-hover:shadow-[0_0_28px_rgba(168,85,247,0.42)]">
-                  <Icon aria-hidden="true" />
-                </span>
-                <span>
-                  <span className="block text-sm font-medium text-white">{title}</span>
-                  <span className="mt-2 block text-xs leading-5 text-zinc-500">{description}</span>
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
+    <section id="templates" aria-labelledby="why-nova-title" className="nova-page-gutter w-full scroll-mt-24 py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl border-y border-white/20 py-16 sm:py-24 lg:py-32">
+        <h2 id="why-nova-title" className="flex items-center gap-3 text-sm font-semibold text-white sm:text-base">
+          <span aria-hidden="true" className="text-5xl font-light leading-none text-[#c084fc]">{'{'}</span>
+          ทำไมต้อง Nova Cloud
+          <span aria-hidden="true" className="text-5xl font-light leading-none text-[#c084fc]">{'}'}</span>
+        </h2>
+        <p className="mt-10 max-w-7xl text-[clamp(1.75rem,4.3vw,4.5rem)] font-normal leading-[1.5] tracking-tight text-white sm:mt-14 lg:mt-16">
+          Nova Cloud รวมการ Build, Test และ Deploy จาก GitHub ไว้ในที่เดียว
+          ให้คุณจัดการโปรเจกต์ ตั้งค่า service และติดตามทุก release
+          ผ่าน workflow เดียวที่เข้าใจง่าย เพื่อให้ทีมมีเวลาโฟกัสกับการสร้างสิ่งที่สำคัญ
+        </p>
       </div>
     </section>
   );

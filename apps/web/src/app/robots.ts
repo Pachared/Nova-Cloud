@@ -1,14 +1,16 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+import type { MetadataRoute } from "next";
+import { site } from "@/shared/seo/site";
 
-export default function robots() {
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/dashboard", "/account", "/settings", "/api"],
+        // Leave UI routes crawlable so crawlers can read their noindex tags.
+        disallow: ["/api/", "/auth/"],
       },
     ],
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: `${site.url}/sitemap.xml`,
   };
 }

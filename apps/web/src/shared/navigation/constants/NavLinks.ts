@@ -1,6 +1,6 @@
 export const navLinks = [
-  { ariaLabel: "Go to templates", href: "#templates", label: "Templates" },
-  { ariaLabel: "Go to workflow", href: "#workflow", label: "Workflow" },
-  { ariaLabel: "Go to features", href: "#features", label: "ฟีเจอร์" },
-  { ariaLabel: "Go to technologies", href: "#technologies", label: "Technologies" },
+  { ariaLabel: "ทำไมต้อง Nova Cloud", href: "#templates", label: "ทำไมต้อง Nova Cloud" },
+  { ariaLabel: "ไปยังขั้นตอนการทำงาน", href: "#workflow", label: "ขั้นตอนการทำงาน" },
+  { ariaLabel: "ไปยังฟีเจอร์", href: "#features", label: "ฟีเจอร์" },
+  { ariaLabel: "ไปยังเทคโนโลยี", href: "#technologies", label: "เทคโนโลยี" },
 ];

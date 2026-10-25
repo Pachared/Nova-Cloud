@@ -1,7 +1,8 @@
 import "../index.css";
-import { Noto_Sans_Thai, Roboto } from "next/font/google";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+import { Roboto } from "next/font/google";
+import localFont from "next/font/local";
+import type { Metadata } from "next";
+import { canIndexSite, site } from "@/shared/seo/site";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -11,36 +12,42 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const notoSansThai = Noto_Sans_Thai({
-  subsets: ["thai"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+const googleSansThai = localFont({
+  src: "./fonts/GoogleSans-Thai.woff2",
+  weight: "400 700",
+  style: "normal",
   display: "swap",
-  variable: "--font-noto-sans-thai",
+  variable: "--font-google-sans-thai",
+  declarations: [
+    { prop: "unicode-range", value: "U+0E00-0E7F,U+200C-200D,U+25CC" },
+  ],
 });
 
-export const metadata = {
-  metadataBase: new URL(siteUrl),
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
-    default: "Nova - Deployment Platform",
-    template: "%s | Nova",
+    default: site.title,
+    template: "%s | Nova Cloud",
   },
-  description:
-    "Nova is a deployment platform for GitHub workflows, CI automation, and deployment pipelines.",
-  alternates: {
-    canonical: "/",
+  icons: {
+    icon: [{ url: "/Nova.svg", type: "image/svg+xml", sizes: "any" }],
+    shortcut: "/Nova.svg",
   },
+  description: site.description,
+  applicationName: site.name,
+  category: "technology",
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
   openGraph: {
-    title: "Nova - Deployment Platform",
-    description:
-      "Build, automate, and deploy software with a modern deployment platform.",
-    url: "/",
-    siteName: "Nova",
+    title: site.title,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Nova deployment platform",
+        alt: site.imageAlt,
       },
     ],
     locale: "th_TH",
@@ -48,20 +55,19 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nova - Deployment Platform",
-    description:
-      "Build, automate, and deploy software with a modern deployment platform.",
-    images: ["/opengraph-image"],
+    title: site.title,
+    description: site.description,
+    images: [{ url: "/opengraph-image", alt: site.imageAlt }],
   },
   robots: {
-    index: true,
+    index: canIndexSite,
     follow: true,
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="th" className={`${roboto.variable} ${notoSansThai.variable}`}>
+    <html lang="th" className={`${roboto.variable} ${googleSansThai.variable}`}>
       <body>{children}</body>
     </html>
   );

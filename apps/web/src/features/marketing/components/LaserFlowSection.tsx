@@ -6,6 +6,7 @@ import LaserFlow from "../style/LaserFlow";
 import DashboardReveal from "./DashboardReveal";
 import TerminalTyping from "./TerminalTyping";
 function LaserFlowSection() {
+  const surfaceRef = useRef<HTMLDivElement | null>(null);
   const revealRef = useRef<HTMLDivElement | null>(null);
 
   const moveReveal = (event: React.PointerEvent<HTMLElement>) => {
@@ -21,10 +22,10 @@ function LaserFlowSection() {
   };
 
   return (
-    <section id="laser-flow" className="nova-page-gutter w-full scroll-mt-32 pb-20 pt-0">
+    <section id="laser-flow" className="nova-page-gutter w-full scroll-mt-32 overflow-hidden pb-20 pt-0">
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className="group relative min-h-[900px] overflow-hidden bg-transparent sm:min-h-[860px]"
+          className="group relative min-h-[900px] bg-transparent sm:min-h-[860px]"
           onPointerMove={moveReveal}
           onPointerLeave={hideReveal}
         >
@@ -37,34 +38,31 @@ function LaserFlowSection() {
               maskImage: "radial-gradient(circle at var(--mx) var(--my), white 0, rgba(255,255,255,.85) 90px, rgba(255,255,255,.35) 170px, transparent 270px)",
             } as React.CSSProperties}
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[620px] bg-gradient-to-b from-transparent via-[#100d17]/15 to-[#100d17]/75 sm:h-[860px]" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-[620px] overflow-hidden sm:h-[780px]">
-            <div className="absolute left-1/2 top-0 h-[300px] w-4 -translate-x-1/2 bg-gradient-to-b from-transparent via-[#c084fc]/55 to-white/90 blur-md sm:h-[390px] sm:w-5" />
-            <div className="absolute left-[6%] right-[6%] top-[300px] h-1 rounded-full bg-gradient-to-r from-transparent via-[#f0c7ff] to-transparent blur-[2px] sm:left-[8%] sm:right-[8%] sm:top-[388px]" />
-            <div className="absolute left-1/2 top-[246px] h-28 w-[18rem] -translate-x-1/2 rounded-full bg-[#a855f7]/25 blur-3xl sm:top-[322px] sm:h-36 sm:w-[28rem]" />
-          </div>
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-40 h-[620px] overflow-hidden opacity-100 mix-blend-screen sm:h-[780px]">
+          <div
+            className="pointer-events-none absolute inset-y-0 left-1/2 z-40 w-[calc(100vw+12rem)] -translate-x-1/2"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent), linear-gradient(to bottom, transparent, black 80px, black calc(100% - 120px), transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent), linear-gradient(to bottom, transparent, black 80px, black calc(100% - 120px), transparent)",
+              maskComposite: "intersect",
+              WebkitMaskComposite: "source-in",
+            }}
+            aria-hidden="true"
+          >
             <LaserFlow
+              surfaceRef={surfaceRef}
+              beamPosition={0.5}
               color="#c084fc"
-              horizontalBeamOffset={0}
-              verticalBeamOffset={0}
-              horizontalSizing={0.5}
-              verticalSizing={2.0}
-              wispDensity={1}
-              wispSpeed={15.0}
-              wispIntensity={5.0}
-              flowSpeed={0.35}
-              flowStrength={0.25}
-              fogIntensity={0.45}
-              fogScale={0.3}
-              fogFallSpeed={0.6}
-              mouseTiltStrength={0.01}
-              mouseSmoothTime={0.0}
-              decay={1.1}
-              falloffStart={1.2}
+              intensity={1.8}
+              beamWidth={1.5}
+              flare={1.5}
+              spread={1.5}
+              spill={1}
+              fog={0.2}
+              dust={1.6}
+              dpr={1.25}
             />
           </div>
-          <div className="absolute inset-x-2 top-[300px] z-30 mx-auto h-[430px] max-w-6xl overflow-hidden rounded-t-3xl border-x-2 border-t-2 border-[#c084fc]/55 bg-[#100d17] p-3 sm:inset-x-6 sm:top-[390px] sm:h-[470px] sm:p-6">
+          <div ref={surfaceRef} className="absolute inset-x-2 top-[300px] z-30 mx-auto h-[430px] max-w-6xl overflow-hidden rounded-t-3xl border-x-2 border-t-2 border-[#c084fc]/55 bg-[#100d17] p-3 sm:inset-x-6 sm:top-[390px] sm:h-[470px] sm:p-6">
             <div className="grid h-full gap-2 sm:gap-4">
               <div className="grid grid-cols-[1fr_auto] gap-2 sm:gap-3 lg:grid-cols-[1fr_280px]">
                 <div className="rounded-2xl bg-white/[0.055] p-3 sm:p-4">
@@ -114,7 +112,7 @@ function LaserFlowSection() {
               </div>
             </div>
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-gradient-to-t from-black via-black/70 to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 left-1/2 z-40 h-20 w-screen -translate-x-1/2 bg-gradient-to-t from-black via-black/70 to-transparent" />
         </div>
       </div>
     </section>

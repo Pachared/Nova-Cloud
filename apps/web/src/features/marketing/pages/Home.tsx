@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Navbar from "@/shared/navigation/Navbar";
-import HeroSection from "../components/HeroSection";
+import SpaceIntroSection from "../components/SpaceIntroSection";
 import LogoLoopSection from "../components/LogoLoopSection";
 import DeveloperSignalsSection from "../components/DeveloperSignalsSection";
 import Login from "@/features/auth/components/Login";
@@ -13,26 +13,35 @@ import NewProjectPreviewSection from "../components/NewProjectPreviewSection";
 import LaserFlowSection from "../components/LaserFlowSection";
 import FinalCtaSection from "../components/FinalCtaSection";
 import FooterSection from "../components/FooterSection";
+import DeployStorySection from "../components/DeployStorySection";
 
 function Home() {
     const [showLogin, setShowLogin] = useState(false);
+    const [navbarReady, setNavbarReady] = useState(false);
 
     return (
-        <div className="overflow-hidden bg-black">
-            <Navbar onLoginClick={() => setShowLogin(true)} />
-
-            <section id="home" className="scroll-mt-28">
-                <HeroSection />
-            </section>
-            <div className="relative flex flex-col items-center">
-                <NewProjectPreviewSection />
-                <LaserFlowSection />
-                <WorkflowSection />
-                <CapabilitiesSection />
-                <LogoLoopSection />
-                <DeveloperSignalsSection />
-                <FinalCtaSection />
+        <div className="overflow-x-clip bg-black">
+            <div inert={!navbarReady} aria-hidden={!navbarReady}
+                style={{ opacity: navbarReady ? 1 : 0, visibility: navbarReady ? 'visible' : 'hidden' }}
+                className="relative z-40 transition-opacity duration-500 motion-reduce:transition-none">
+                <Navbar onLoginClick={() => setShowLogin(true)} />
             </div>
+
+            <main id="main-content">
+                <section id="home" className="scroll-mt-28">
+                    <SpaceIntroSection onReadyChange={setNavbarReady} />
+                </section>
+                <div className="relative flex flex-col items-center">
+                    <NewProjectPreviewSection />
+                    <DeployStorySection />
+                    <LaserFlowSection />
+                    <WorkflowSection />
+                    <CapabilitiesSection />
+                    <LogoLoopSection />
+                    <DeveloperSignalsSection />
+                    <FinalCtaSection />
+                </div>
+            </main>
             <FooterSection />
 
             {showLogin && (

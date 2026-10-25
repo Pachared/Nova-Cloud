@@ -4,14 +4,12 @@ on:
   push:
     paths:
       - "apps/web/**"
-      - "packages/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/web.yml"
   pull_request:
     paths:
       - "apps/web/**"
-      - "packages/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/web.yml"
