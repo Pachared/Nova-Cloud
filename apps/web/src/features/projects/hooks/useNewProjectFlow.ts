@@ -51,6 +51,8 @@ export function useNewProjectFlow() {
   const [region, setRegion] = useState<Region>("Singapore");
   const [projectName, setProjectName] = useState("nova-project");
   const [createdProject, setCreatedProject] = useState<CreatedProject | null>(null);
+  const [storageNotice, setStorageNotice] = useState("");
+  const [sourceOverride, setSourceOverride] = useState<string | null>(null);
 
   const filteredRepos = useMemo(
     () =>
@@ -83,6 +85,7 @@ export function useNewProjectFlow() {
   );
 
   const selectedSource = useMemo(() => {
+    if (sourceOverride) return sourceOverride;
     const repo = recentRepositories.find((item) => item.id === selectedRepo);
     const template = templateOptions.find((item) => item.id === selectedTemplate);
     const action = projectActions.find((item) => item.id === selectedAction);
@@ -90,9 +93,10 @@ export function useNewProjectFlow() {
     if (selectedAction === "template") return template?.name ?? "Template";
     if (selectedAction === "database") return "Database service";
     return action?.title ?? "Empty project";
-  }, [selectedAction, selectedRepo, selectedTemplate]);
+  }, [selectedAction, selectedRepo, selectedTemplate, sourceOverride]);
 
   function selectAction(actionId: ProjectActionId) {
+    setSourceOverride(null);
     setSelectedAction(actionId);
     const source = actionId === "github"
       ? recentRepositories.find((repo) => repo.id === selectedRepo)?.name
@@ -101,6 +105,7 @@ export function useNewProjectFlow() {
   }
 
   function selectRepository(repoId: RepositoryId) {
+    setSourceOverride(null);
     const repo = recentRepositories.find((item) => item.id === repoId);
     setSelectedRepo(repoId);
     setSelectedAction("github");
@@ -108,6 +113,7 @@ export function useNewProjectFlow() {
   }
 
   function selectTemplate(templateId: TemplateId) {
+    setSourceOverride(null);
     const template = templateOptions.find((item) => item.id === templateId);
     setSelectedTemplate(templateId);
     setSelectedAction("template");
@@ -136,12 +142,24 @@ export function useNewProjectFlow() {
     };
     setCreatedProject(nextProject);
 
-    const current = JSON.parse(localStorage.getItem(historyKey) ?? "[]") as CreatedProject[];
-    localStorage.setItem(historyKey, JSON.stringify([nextProject, ...current].slice(0, 5)));
+    setStorageNotice("");
+    try {
+      let current: unknown = [];
+      try {
+        current = JSON.parse(localStorage.getItem(historyKey) ?? "[]");
+      } catch {
+        // Recover malformed history by replacing it with the new draft.
+      }
+      const history = Array.isArray(current) ? current : [];
+      localStorage.setItem(historyKey, JSON.stringify([nextProject, ...history].slice(0, 5)));
+    } catch {
+      setStorageNotice("Browser storage is unavailable. This draft will be lost when you leave this page.");
+    }
   }
 
   return {
     createdProject,
+    storageNotice,
     filteredActions,
     filteredRepos,
     filteredServices,
@@ -157,6 +175,7 @@ export function useNewProjectFlow() {
     setProjectName,
     setQuery,
     setRegion,
+    setSourceOverride,
     selectAction,
     selectRepository,
     selectTemplate,

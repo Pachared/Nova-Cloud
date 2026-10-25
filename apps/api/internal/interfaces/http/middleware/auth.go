@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 )
 
 func JWTAuthMiddleware() gin.HandlerFunc {
@@ -21,13 +20,8 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 
 		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 
-		claims := &services.JWTClaims{}
-
-		token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
-			return services.JwtSecret, nil
-		})
-
-		if err != nil || !token.Valid {
+		claims, err := services.ParseJWT(tokenString)
+		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Token ไม่ถูกต้องหรือหมดอายุ"})
 			c.Abort()
 			return

@@ -131,14 +131,21 @@ func RefreshToken(c *gin.Context) {
 		return
 	}
 
-	newRefreshToken, err := services.GenerateRefreshToken(userID)
+	newRefreshToken, expiresAt, err := services.NewRefreshToken(userID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "ไม่สามารถสร้าง Refresh token ใหม่ได้"})
 		return
 	}
 
-	if err := config.DB.Model(&tokenRecord).Update("token", newRefreshToken).Error; err != nil {
+	result := config.DB.Model(&models.RefreshToken{}).
+		Where("id = ? AND token = ? AND expires_at > ?", tokenRecord.ID, refreshToken, time.Now()).
+		Updates(map[string]interface{}{"token": newRefreshToken, "expires_at": expiresAt})
+	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "ไม่สามารถอัปเดต Refresh token ใหม่ได้"})
+		return
+	}
+	if result.RowsAffected != 1 {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Refresh token ถูกใช้งานแล้วหรือหมดอายุ"})
 		return
 	}
 

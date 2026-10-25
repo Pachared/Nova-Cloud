@@ -29,7 +29,10 @@ function NewProjectExperience() {
     if (["github", "database", "template", "docker"].includes(requestedSource ?? "")) {
       flow.selectAction(requestedSource as ProjectActionId);
     }
-    if (selectedName) flow.setProjectName(selectedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""));
+    if (selectedName && ["github", "database", "template", "docker"].includes(requestedSource ?? "")) {
+      flow.setSourceOverride(selectedName);
+      flow.setProjectName(selectedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""));
+    }
   }, [flow, requestedSource, selectedName]);
 
   return (
@@ -48,6 +51,7 @@ function NewProjectExperience() {
           <label className="flex h-10 items-center gap-2 rounded-md border border-[#7c3aed]/25 bg-[#080610] px-3 text-zinc-500 focus-within:border-[#c084fc]">
             <FiSearch className="text-sm" aria-hidden="true" />
             <input
+              aria-label="Search project sources"
               value={flow.query}
               onChange={(event) => flow.setQuery(event.target.value)}
               placeholder="What would you like to create?"
@@ -87,6 +91,11 @@ function NewProjectExperience() {
 
           <div className="border-t border-[#7c3aed]/15 pt-2">
             <input
+              aria-label="Project name"
+              required
+              pattern="[a-z0-9]+(-[a-z0-9]+)*"
+              maxLength={63}
+              title="Use lowercase letters, numbers, and single hyphens between words (up to 63 characters)."
               value={flow.projectName}
               onChange={(event) => flow.setProjectName(event.target.value)}
               className="mb-2 h-9 w-full rounded-md border border-[#7c3aed]/20 bg-[#080610]/80 px-3 text-sm font-medium text-white outline-none placeholder:text-zinc-600 focus:border-[#c084fc]"
@@ -96,16 +105,17 @@ function NewProjectExperience() {
               type="submit"
               className="h-10 w-full cursor-pointer rounded-md bg-[#7c3aed]/25 text-sm font-semibold text-white transition hover:bg-[#7c3aed]/35"
             >
-              Create {flow.projectName || "project"}
+              Save draft {flow.projectName || "project"}
             </button>
           </div>
 
           {flow.createdProject ? (
-            <div className="mt-2 rounded-md border border-[#a855f7]/30 bg-[#140d20] px-3 py-2 text-xs text-zinc-400">
-              <span className="font-semibold text-[#c084fc]">Created</span>{" "}
+            <div role="status" className="mt-2 rounded-md border border-[#a855f7]/30 bg-[#140d20] px-3 py-2 text-xs text-zinc-400">
+              <span className="font-semibold text-[#c084fc]">{flow.storageNotice ? "Draft ready" : "Draft saved"}</span>{" "}
               {flow.createdProject.name} from {flow.createdProject.source}
             </div>
           ) : null}
+          {flow.storageNotice ? <p role="status" className="mt-2 px-3 text-xs text-amber-300">{flow.storageNotice}</p> : null}
         </form>
       </section>
     </main>

@@ -5,6 +5,8 @@ services:
       dockerfile: apps/web/Dockerfile
     env_file:
       - apps/web/.env.example
+    environment:
+      NEXT_PUBLIC_API_URL: http://api:8080
     ports:
       - "3000:3000"
     depends_on:
@@ -16,14 +18,25 @@ services:
       dockerfile: apps/api/Dockerfile
     env_file:
       - apps/api/.env.example
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      REDIS_URL: redis://redis:6379/0
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
-      - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
   postgres:
     image: postgres:16-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nova -d nova"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     environment:
       POSTGRES_USER: nova
       POSTGRES_PASSWORD: password
@@ -35,6 +48,11 @@ services:
 
   redis:
     image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     ports:
       - "6379:6379"
 

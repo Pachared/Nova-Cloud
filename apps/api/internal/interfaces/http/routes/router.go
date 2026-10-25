@@ -23,7 +23,7 @@ func SetupRoutes(r *gin.Engine) {
 		auth.POST("/github", controllers.GitHubLogin)                                      // POST /auth/github // แลก GitHub OAuth code เป็น token
 		auth.GET("/profile", middleware.JWTAuthMiddleware(), controllers.Profile)          // GET /auth/profile // ดูข้อมูลโปรไฟล์ผู้ใช้ (ต้อง login)
 		auth.PUT("/profile", middleware.JWTAuthMiddleware(), controllers.UpdateOwnProfile) // PUT /auth/profile // อัปเดตข้อมูลโปรไฟล์ผู้ใช้ (ต้อง login)
-		auth.POST("/refresh", middleware.JWTAuthMiddleware(), controllers.RefreshToken)    // POST /auth/refresh // รีเฟรช access token (ต้อง login)
+		auth.POST("/refresh", controllers.RefreshToken)                                    // Validates the refresh token itself, including after access expiry.
 	}
 
 	// กลุ่ม route สำหรับ API ที่ต้อง login ทุกครั้ง
